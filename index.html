@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lana ProCare - منتجات العناية الفاخرة</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Great+Vibes&family=Roboto+Mono&display=swap"
+    rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- ملف CSS الخاص بتعديلات RTL - تم إزالة الربط لعدم توفره وتم دمج التعديلات الضرورية في هذا الملف -->
+  <!-- <link rel="stylesheet" href="lana_procare_rtl.css"> -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      overflow-x: hidden;
+      background: #000;
+    }
+
+    /* ========== NAVBAR STYLES ========== */
+    .galaxy-header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 40px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border-bottom: 1px solid rgba(249, 214, 122, 0.1);
+    }
+
+    .galaxy-header.scrolled {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(15px);
+      padding: 12px 40px;
+      box-shadow: 0 8px 32px rgba(249, 214, 122, 0.1);
+      border-bottom: 1px solid rgba(249, 214, 122, 0.2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 1001;
+    }
+
+    .logo a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+
+    .logo a:hover {
+      transform: scale(1.05);
+    }
+
+    .logo img {
+      width: 150px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(249, 214, 122, 0.3));
+      transition: filter 0.3s ease;
+    }
+
+    .logo a:hover img {
+      filter: drop-shadow(0 0 20px rgba(249, 214, 122, 0.6));
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 35px;
+      align-items: center;
+    }
+
+    /* Language Switch Button */
+    .lang-switch {
+      background: none;
+      border: 2px solid #f9d67a;
+      color: #f9d67a;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-right: 20px; /* For RTL layout */
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .lang-switch:hover {
+      background: #f9d67a;
+      color: #000;
+      box-shadow: 0 0 15px rgba(249, 214, 122, 0.8);
+    }
+
+    /* Combined Nav and Lang Switch */
+    .nav-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links li a {
+      color: #f9d67a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      padding: 8px 0;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links li a::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, #f9d67a 0%, #d4a574 100%);
+      transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 0 10px rgba(249, 214, 122, 0.5);
+    }
+
+    .nav-links li a::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      right: 0;
+      width: 0%;
+      height: 1px;
+      background: rgba(249, 214, 122, 0.3);
+      transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .nav-links li a:hover::before,
+    .nav-links li a.active::before,
+    .nav-links li a:hover::after,
+    .nav-links li a.active::after {
+      width: 100%;
+    }
+
+    .nav-links li a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px rgba(249, 214, 122, 0.5);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      color: #f9d67a;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 1001;
+    }
+
+    .menu-toggle:hover {
+      color: #fff;
+      text-shadow: 0 0 10px rgba(249, 214, 122, 0.5);
+    }
+
+    /* ========== HERO SLIDER STYLES ========== */
+    .galaxy-hero-slider {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(135deg, #000 0%, rgba(0, 0, 0, 0.95) 50%, #1a0a2e 100%);
+      padding-top: 80px;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(249, 214, 122, 0.6);
+      border-radius: 50%;
+      animation: float 20s infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      z-index: 2;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide.active .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 30px 40px;
+      transform: scale(0.9);
+      max-width: 90%;
+      flex-direction: row-reverse;
+      width: 100%;
+    }
+
+    @media (max-width: 1024px) {
+      .slide.active .hero-content {
+        gap: 20px;
+        padding: 25px 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .slide.active .hero-content {
+        flex-direction: column;
+        transform: scale(1);
+        padding: 20px 15px;
+        gap: 20px;
+        max-width: 100%;
+      }
+    }
+
+    .hero-content .hero-buttons a {
+      pointer-events: auto;
+    }
+
+    @media (max-width: 480px) {
+      .slide.active .hero-content {
+        padding: 15px 10px;
+        gap: 15px;
+      }
+    }
+
+    .slide.active .hero-text {
+      flex: 1;
+      text-align: right;
+    }
+
+    .slide.active .hero-content img {
+      width: 300px;
+      max-width: 45%;
+      border-radius: 15px;
+      margin: 0;
+      filter: drop-shadow(0 30px 60px rgba(249, 214, 122, 0.5));
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .slide.active .hero-content img {
+        width: 250px;
+        max-width: 40%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .slide.active .hero-content img {
+        max-width: 100%;
+        width: auto;
+        height: auto;
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slide.active .hero-content img {
+        max-width: 90%;
+        width: auto;
+      }
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, rgba(249, 214, 122, 0.05) 0%, transparent 70%);
+      z-index: -1;
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.5);
+      padding: 50px 40px;
+      border-radius: 25px;
+      max-width: 85%;
+      border: 1px solid rgba(249, 214, 122, 0.2);
+      box-shadow: 0 20px 60px rgba(249, 214, 122, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      animation: slideInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero-content img {
+      /* تم نقل التنسيق الخاص بالصورة إلى .slide.active .hero-content img */
+      object-fit: contain;
+      filter: drop-shadow(0 20px 40px rgba(249, 214, 122, 0.3));
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      animation: imageFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes imageFloat {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      color: #f9d67a;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 0 30px rgba(249, 214, 122, 0.4);
+      animation: titleGlow 2s ease-in-out infinite;
+      text-align: right;
+      line-height: 1.2;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+      }
+    }
+
+    @keyframes titleGlow {
+
+      0%,
+      100% {
+        text-shadow: 0 0 20px rgba(249, 214, 122, 0.3);
+      }
+
+      50% {
+        text-shadow: 0 0 40px rgba(249, 214, 122, 0.6);
+      }
+    }
+
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 35px;
+      color: #e8e8e8;
+      line-height: 1.6;
+      letter-spacing: 0.5px;
+      text-align: right;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-content p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-content p {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content p {
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+      }
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
+
+    @media (max-width: 768px) {
+      .hero-buttons {
+        justify-content: center;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .slide.active .hero-content {
+        flex-direction: column;
+      }
+    }
+
+    .hero-content .hero-buttons a {
+      pointer-events: auto;
+    }
+
+    @media (max-width: 480px) {
+      .hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+
+    .hero-buttons .btn {
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+      .hero-buttons .btn {
+        padding: 12px 25px;
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-buttons .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        width: 100%;
+      }
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f9d67a 0%, #e0c150 100%);
+      color: #000;
+      box-shadow: 0 10px 30px rgba(249, 214, 122, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #fff 0%, #f9d67a 100%);
+      box-shadow: 0 15px 40px rgba(249, 214, 122, 0.5);
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      border: 2px solid #f9d67a;
+      color: #f9d67a;
+      background: transparent;
+      box-shadow: 0 0 20px rgba(249, 214, 122, 0.2);
+    }
+
+    .btn-secondary:hover {
+      color: #fff;
+      border-color: #fff;
+      box-shadow: 0 10px 30px rgba(249, 214, 122, 0.4);
+      transform: translateY(-3px);
+    }
+
+    /* Slider Navigation Dots */
+    .slider-dots {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(249, 214, 122, 0.3);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border: 2px solid transparent;
+    }
+
+    .dot.active {
+      background: #f9d67a;
+      width: 30px;
+      border-radius: 6px;
+      box-shadow: 0 0 20px rgba(249, 214, 122, 0.6);
+    }
+
+    .dot:hover {
+      background: rgba(249, 214, 122, 0.6);
+      transform: scale(1.2);
+    }
+
+    /* Slider Controls */
+    .slider-controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 30px;
+      z-index: 10;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .slider-controls .slider-btn {
+      pointer-events: auto;
+    }
+
+    @media (max-width: 768px) {
+      .slider-controls {
+        padding: 0 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slider-controls {
+        display: none;
+      }
+    }
+
+    .slider-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(249, 214, 122, 0.2);
+      border: 2px solid rgba(249, 214, 122, 0.4);
+      color: #f9d67a;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slider-btn:hover {
+      background: rgba(249, 214, 122, 0.4);
+      border-color: #f9d67a;
+      box-shadow: 0 0 20px rgba(249, 214, 122, 0.5);
+      transform: scale(1.1);
+    }
+
+    .slider-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* ========== RESPONSIVE STYLES ========== */
+    @media (max-width: 1024px) {
+      .nav-links {
+        gap: 25px;
+      }
+
+      .nav-links li a {
+        font-size: 0.95rem;
+      }
+
+      .hero-content h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero-content p {
+        font-size: 1.1rem;
+      }
+
+      .hero-content img {
+        width: 280px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .galaxy-header {
+        padding: 12px 20px;
+      }
+
+      .galaxy-header.scrolled {
+        padding: 10px 20px;
+      }
+
+      .logo img {
+        width: 120px;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        background: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        width: 100%;
+        display: flex;
+        gap: 15px;
+        padding: 30px 20px;
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(249, 214, 122, 0.2);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        z-index: 999;
+      }
+
+      .nav-links.show {
+        right: 0;
+      }
+
+      .lang-switch {
+        margin-right: 0;
+        margin-top: 10px;
+      }
+    }
+
+      .nav-links li a {
+        font-size: 1.1rem;
+        padding: 12px 0;
+      }
+
+      .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .galaxy-hero-slider {
+        margin-top: 0;
+      }
+
+      .hero-content {
+        padding: 35px 25px;
+        max-width: 95%;
+        border-radius: 20px;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+      }
+
+      .hero-content img {
+        width: 220px;
+        margin-bottom: 20px;
+      }
+
+      .hero-buttons {
+        gap: 12px;
+      }
+
+      .hero-buttons .btn {
+        padding: 12px 25px;
+        font-size: 0.95rem;
+      }
+
+      .slider-controls {
+        padding: 0 15px;
+      }
+
+      .slider-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+
+      .slider-dots {
+        bottom: 30px;
+        gap: 10px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+      }
+
+      .dot.active {
+        width: 25px;
+      }
+    
+
+    @media (max-width: 480px) {
+      .galaxy-header {
+        padding: 10px 15px;
+      }
+
+      .logo img {
+        width: 100px;
+      }
+
+      .nav-links li a {
+        font-size: 1rem;
+      }
+
+      .hero-content {
+        padding: 25px 15px;
+      }
+
+      .hero-content h1 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+      }
+
+      .hero-content p {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+      }
+
+      .hero-content img {
+        width: 150px;
+      }
+
+      .slide.active .hero-content img {
+        max-width: 150px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hero-buttons .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        width: 100%;
+      }
+
+      .slider-controls {
+        display: none;
+      }
+
+      .slider-dots {
+        bottom: 20px;
+        gap: 8px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+      }
+
+      .dot.active {
+        width: 20px;
+      }
+    }
+
+    /* Logo text styles */
+
+    /* ========== MODAL STYLES ========== */
+    .modal {
+      position: fixed;
+      z-index: 2000;
+      /* أعلى من كل شيء آخر */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+      /* خلفية داكنة شفافة */
+      display: none;
+      /* مخفي افتراضياً */
+      align-items: center;
+      /* للتحكم العمودي */
+      justify-content: center;
+      /* للتحكم الأفقي */
+      backdrop-filter: blur(5px);
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .modal-content {
+      background-color: #0a0a0a;
+      padding: 30px;
+      border: 1px solid #f9d67a;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 20px;
+      box-shadow: 0 10px 50px rgba(249, 214, 122, 0.4);
+      position: relative;
+      animation: slideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      color: #e8e8e8;
+      text-align: right;
+    }
+
+    .close-btn {
+      color: #f9d67a;
+      font-size: 35px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: absolute;
+      top: 15px;
+      right: 25px;
+    }
+
+    .close-btn:hover,
+    .close-btn:focus {
+      color: #fff;
+      text-decoration: none;
+      transform: scale(1.1);
+    }
+
+    .modal-title {
+      color: #f9d67a;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid rgba(249, 214, 122, 0.5);
+      padding-bottom: 10px;
+    }
+
+    .modal-body {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    .modal-text-content {
+      flex: 1;
+    }
+
+    .modal-body img {
+      flex-basis: 300px;
+      /* عرض ثابت للصورة */
+      max-width: 300px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 5px 25px rgba(249, 214, 122, 0.3);
+    }
+
+    .modal-body p {
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1
+      }
+    }
+
+    @media (max-width: 768px) {
+      .modal-content {
+        width: 95%;
+        padding: 20px;
+      }
+
+      .modal-body {
+        flex-direction: column;
+        /* تغيير التخطيط إلى عمودي في الشاشات الصغيرة */
+        align-items: center;
+      }
+
+      .modal-body img {
+        max-width: 80%;
+        width: auto;
+        margin-bottom: 20px;
+      }
+
+      .modal-text-content {
+        text-align: center;
+        /* توسيط النص في المودال للهواتف */
+      }
+
+      .modal-title {
+        font-size: 1.5rem;
+      }
+
+      .close-btn {
+        font-size: 30px;
+        top: 10px;
+        right: 15px;
+      }
+    }
+
+    .lana {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: #f9d67a;
+      text-shadow: 0 0 20px rgba(249, 214, 122, 0.5);
+    }
+
+    .procare {
+      font-weight: 700;
+      font-size: 2.2rem;
+      color: #fff;
+      text-shadow: 0 0 15px rgba(249, 214, 122, 0.3);
+    }
+
+
+
+    /* ====== Products Section ====== */
+    .products-section {
+      padding: 100px 20px;
+      background: #0a0a0a;
+      color: #f9d67a;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 60px;
+      color: #f9d67a;
+      text-shadow: 0 0 20px rgba(249, 214, 122, 0.5);
+      font-weight: 700;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      /* 3 منتجات لكل صف */
+      gap: 40px;
+      justify-items: center;
+    }
+
+    .product-card {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      border: 1px solid rgba(249, 214, 122, 0.2);
+      box-shadow: 0 15px 50px rgba(249, 214, 122, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 40px 10px rgba(249, 214, 122, 0.5);
+    }
+
+
+    .product-card img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card img:hover {
+      transform: scale(1.05);
+    }
+
+    .product-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #f9d67a;
+    }
+
+    .product-card p {
+      font-size: 1rem;
+      color: #e8e8e8;
+      margin-bottom: 20px;
+    }
+
+    .product-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .product-buttons .btn {
+      padding: 10px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    /* Primary Button */
+    .product-buttons .btn-primary {
+      background: linear-gradient(135deg, #f9d67a 0%, #e0c150 100%);
+      color: #000;
+      box-shadow: 0 10px 30px rgba(249, 214, 122, 0.3);
+    }
+
+    .product-buttons .btn-primary:hover {
+      background: linear-gradient(135deg, #fff 0%, #f9d67a 100%);
+      box-shadow: 0 15px 40px rgba(249, 214, 122, 0.5);
+      transform: translateY(-3px);
+    }
+
+    /* Secondary Button */
+    .product-buttons .btn-secondary {
+      border: 2px solid #f9d67a;
+      color: #f9d67a;
+      background: transparent;
+      box-shadow: 0 0 20px rgba(249, 214, 122, 0.2);
+    }
+
+    .product-buttons .btn-secondary:hover {
+      color: #fff;
+      border-color: #fff;
+      box-shadow: 0 10px 30px rgba(249, 214, 122, 0.4);
+      transform: translateY(-3px);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 منتجات لكل صف */
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+        /* منتج واحد لكل صف */
+        gap: 25px;
+      }
+
+      .product-card img {
+        max-width: 180px;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+        margin-bottom: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-card img {
+        max-width: 150px;
+      }
+
+      .product-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .product-buttons .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        width: 100%;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+      }
+    }
+
+
+    /* ===== About Section ===== */
+    .about-section {
+      padding: 100px 20px;
+      background: #0a0a0a;
+      color: #f9d67a;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text .section-title {
+      font-size: 2.8rem;
+      margin-bottom: 30px;
+      color: #f9d67a;
+      text-shadow: 0 0 20px rgba(249, 214, 122, 0.5);
+      font-weight: 700;
+    }
+
+    .about-text p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      color: #e8e8e8;
+    }
+
+    .about-text .btn-primary {
+      margin-top: 10px;
+      padding: 12px 30px;
+    }
+
+    .about-image {
+      flex: 1;
+      text-align: center;
+    }
+
+    .about-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 15px 50px rgba(249, 214, 122, 0.2);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .about-image img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 60px rgba(249, 214, 122, 0.4);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .about-content {
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .about-content {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .about-text .section-title {
+        font-size: 2.2rem;
+      }
+
+      .about-text p {
+        font-size: 1.1rem;
+      }
+
+      .about-image img {
+        max-width: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .about-text .section-title {
+        font-size: 1.8rem;
+      }
+
+      .about-text p {
+        font-size: 1rem;
+      }
+
+      .about-image img {
+        max-width: 250px;
+      }
+    }
+
+    /* ===== Footer Section ===== */
+    .footer-section {
+      background: #0a0a0a;
+      color: #f9d67a;
+      padding: 60px 20px 20px 20px;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 50px;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .footer-about h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #f9d67a;
+    }
+
+    .footer-about p {
+      font-size: 1rem;
+      color: #e8e8e8;
+      line-height: 1.6;
+    }
+
+    .footer-links h4,
+    .footer-social h4 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: #f9d67a;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links ul li a {
+      color: #f9d67a;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links ul li a:hover {
+      color: #fff;
+    }
+
+    .footer-social .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .footer-social .social-icons a {
+      font-size: 1.5rem;
+      color: #f9d67a;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .footer-social .social-icons a:hover {
+      color: #fff;
+      transform: scale(1.2);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      border-top: 1px solid rgba(249, 214, 122, 0.2);
+      padding-top: 15px;
+      font-size: 0.9rem;
+      color: #e8e8e8;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+      }
+
+      .footer-social .social-icons {
+        justify-content: center;
+      }
+    }
+
+    .footer-social .social-icons a i {
+      color: #f9d67a;
+      font-size: 1.5rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .footer-social .social-icons a:hover i {
+      color: #fff;
+      /* يتحول للون أبيض عند المرور */
+      transform: scale(1.2);
+    }
+
+    /* ===== Contact Section - Social Buttons ===== */
+    .contact-section {
+      padding: 100px 20px;
+      background: #0a0a0a;
+      color: #f9d67a;
+      text-align: center;
+    }
+
+    .contact-section .section-title {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      color: #f9d67a;
+      text-shadow: 0 0 20px rgba(249, 214, 122, 0.5);
+      font-weight: 700;
+    }
+
+    .contact-desc {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      color: #e8e8e8;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .contact-buttons .btn {
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      color: #000;
+      background: linear-gradient(135deg, #f9d67a 0%, #e0c150 100%);
+      transition: all 0.3s ease;
+    }
+
+    .contact-buttons .btn:hover {
+      background: linear-gradient(135deg, #fff 0%, #f9d67a 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(249, 214, 122, 0.5);
+    }
+
+    /* ألوان مميزة للأزرار حسب الخدمة */
+    .whatsapp-btn {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .whatsapp-btn:hover {
+      background: #1ebe57;
+    }
+
+    .facebook-btn {
+      background: #1877F2;
+      color: #fff;
+    }
+
+    .facebook-btn:hover {
+      background: #1356c4;
+    }
+
+    .instagram-btn {
+      background: #E1306C;
+      color: #fff;
+    }
+
+    .instagram-btn:hover {
+      background: #c1275a;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .contact-buttons {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="galaxy-header">
+    <div class="logo">
+      <a href="#home"><img src="img/logoo-removebg-preview.png" alt="Lana ProCare Logo"></a>
+    </div>
+    <div class="nav-container">
+      <ul class="nav-links">
+      <li><a href="#home" class="nav-link active">الرئيسية</a></li>
+      <li><a href="#products" class="nav-link">المنتجات</a></li>
+      <li><a href="#about" class="nav-link">عن البراند</a></li>
+      <li><a href="#contact" class="nav-link">تواصل معنا</a></li>
+      </ul>
+      <a href="indexen.html" class="lang-switch">English</a>
+    </div>
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+
+
+  <!-- Hero Slider -->
+  <section class="galaxy-hero-slider" id="home">
+    <div class="slider-bg" id="particlesContainer"></div>
+    <!-- Slide 1 -->
+    <div class="slide active">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>
+            <span class="lana">Lana</span>
+            <span class="procare">ProCare</span>
+
+          </h1>
+          <p>
+            صُممت لتمنحك عناية طبيعية فاخرة تجمع بين المكونات الفعّالة والجودة العالية، لتمنح بشرتك
+            وشعرك إشراقة صحية وجاذبية طبيعية
+          </p>
+          <div class="hero-buttons">
+            <a href="#products" class="btn btn-primary">اكتشفي مجموعتنا</a>
+            <a href="#contact" class="btn btn-secondary">تواصلي مع فريقنا</a>
+          </div>
+        </div>
+        <img src="img/index.jpg" alt="مجموعة منتجات Lana ProCare الفاخرة">
+      </div>
+    </div>
+
+
+    <!-- Slide 2 -->
+    <div class="slide">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>
+            <span class="lana">Lana</span>
+            <span class="procare">ProCare</span>
+          </h1>
+          <p>
+            زبدة الجسم بالمانجو: ترطيب عميق وملمس حريري يدوم لساعات
+          </p>
+          <div class="hero-buttons">
+            <a href="#products" class="btn btn-primary">ابدئي رحلتك الآن</a>
+          </div>
+        </div>
+        <img src="img/bodybutter.png" alt="Body Butter Mango">
+      </div>
+    </div>
+
+
+    <!-- Slide 3 -->
+    <div class="slide">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>
+            <span class="lana">Lana</span>
+            <span class="procare">ProCare</span>
+
+          </h1>
+
+          <p>
+            زيت الأرغان للشعر: اكتشفي سر الإشراقة الدائمة مع منتجاتنا
+          </p>
+          <div class="hero-buttons">
+
+            <a href="#products" class="btn btn-primary">شاهدي المجموعة </a>
+          </div>
+        </div>
+        <img src="img/hairoil.jpg" alt="Argan Hair Oil">
+      </div>
+    </div>
+
+
+    <!-- Slide 4 -->
+    <div class="slide">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>
+            <span class="lana">Lana</span>
+            <span class="procare">ProCare</span>
+
+          </h1>
+          <p>زيت الجسم: ترطيب عميق وملمس حريري يدوم لساعات </p>
+          <div class="hero-buttons">
+
+            <a href="#products" class="btn btn-primary">اكتشفي سر التألق </a>
+          </div>
+        </div>
+        <img src="img/bodyoil.png" alt="Body Oil">
+      </div>
+    </div>
+
+
+    <!-- Slide 5 -->
+    <div class="slide">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>
+            <span class="lana">Lana</span>
+            <span class="procare">ProCare</span>
+
+          </h1>
+          <p>مقشر الجسم بالقهوة: بشرة ناعمة كالمخمل تبدأ من فنجان قهوة </p>
+          <div class="hero-buttons">
+
+            <a href="#products" class="btn btn-primary">شاهدي المجموعة</a>
+          </div>
+        </div>
+        <img src="img/bodyscrub.png" alt="Body Scrub">
+      </div>
+    </div>
+
+
+    <!-- Slide 6 -->
+    <div class="slide">
+      <div class="hero-content">
+        <div class="hero-text" style="text-align: right;">
+          <h1>
+            <span class="lana">Lana</span>
+            <span class="procare">ProCare</span>
+          </h1>
+          <p>
+            مزيل العرق: انتعاش يدوم طوال اليوم مع تركيبة طبيعية وآمنة
+          </p>
+          <div class="hero-buttons">
+            <a href="#products" class="btn btn-primary">جربي الانتعاش </a>
+
+          </div>
+        </div>
+        <img src="img/Deodorants.png" alt="مزيل العرق الطبيعي">
+      </div>
+    </div>
+
+
+    <!-- Slide 7 -->
+    <div class="slide">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>
+            <span class="lana">Lana</span>
+            <span class="procare">ProCare</span>
+
+          </h1>
+          <p>سيروم ألفا أربوتين: مستحضرات تجمع بين الفخامة والنتائج المذهلة</p>
+          <div class="hero-buttons">
+            <a href="#products" class="btn btn-primary">دللي بشرتك </a>
+          </div>
+        </div>
+        <img src="img/serum.png" alt="Serum">
+      </div>
+    </div>
+    </section>
+
+    <!-- Modal Structure -->
+    <div id="productModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2 class="modal-title" id="modalTitle">تفاصيل المنتج</h2>
+        <div class="modal-body">
+          <img id="modalImage" src="" alt="صورة المنتج">
+          <div class="modal-text-content">
+            <p id="modalDescription">هنا سيتم عرض الوصف الكامل للمنتج.</p>
+            <p id="modalPrice" style="color: #f9d67a; font-weight: 700; font-size: 1.2rem;"></p>
+            <a href="https://api.whatsapp.com/send/?phone=962795982044" class="btn btn-primary" style="margin-top: 15px;">اطلب الآن</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <section class="products-section" id="products">
+    <div class="container">
+      <h2 class="section-title">منتجاتنا الفاخرة</h2>
+      <div class="products-grid">
+        <!-- منتج 1: زبدة الجسم بالمانجو -->
+        <div class="product-card">
+          <img src="img/bodybutter.png" alt="زبدة الجسم بالمانجو">
+          <h3>زبدة الجسم بالمانجو</h3>
+          <p>ترطيب عميق وملمس حريري بتركيبة غنية بزبدة الشيا والمانجا وفيتامين E.</p>
+          <div class="product-buttons">
+            <a href="https://api.whatsapp.com/send/?phone=962795982044" class="btn btn-primary">شراء الآن</a>
+            <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product1">التفاصيل</a>
+          </div>
+        </div>
+
+        <!-- منتج 2: زيت الجسم للبشرة الناعمة -->
+        <div class="product-card">
+          <img src="img/bodyoil.png" alt="زيت الجسم للبشرة الناعمة">
+          <h3>زيت الجسم للبشرة الناعمة</h3>
+          <p>تركيبة خفيفة غنية بزيت جنين القمح والجوجوبا وفيتامين E لجلد ناعم ومشرق.</p>
+          <div class="product-buttons">
+            <a href="https://api.whatsapp.com/send/?phone=962795982044" class="btn btn-primary">شراء الآن</a>
+            <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product2">التفاصيل</a>
+          </div>
+        </div>
+
+        <!--منتج 3: مقشر الجسم بالقهوة  -->
+        <div class="product-card">
+          <img src="img/bodyscrub.png" alt="مقشر الجسم بالقهوة ">
+          <h3>مقشر الجسم بالقهوة </h3>
+          <p>مقشر فعّال يزيل الخلايا الميتة ويفتح البشرة بفضل القهوة .</p>
+          <div class="product-buttons">
+            <a href="https://api.whatsapp.com/send/?phone=962795982044" class="btn btn-primary">شراء الآن</a>
+            <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product3">التفاصيل</a>
+          </div>
+        </div>
+
+
+        <!-- منتج 4: مزيل عرق لا سواه -->
+        <div class="product-card">
+          <img src="img/Deodorants.png" alt="مزيل عرق لا سواه">
+          <h3>مزيل عرق لا سواه</h3>
+          <p>تركيبة طبيعية وآمنة تضمن انتعاشًا يدوم طوال اليوم دون سد المسام.</p>
+          <div class="product-buttons">
+            <a href="https://api.whatsapp.com/send/?phone=962795982044" class="btn btn-primary">شراء الآن</a>
+            <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product4">التفاصيل</a>
+          </div>
+        </div>
+
+
+        <!-- منتج 5: زيت الأرغان للشعر -->
+        <div class="product-card">
+          <img src="img/hairoil.jpg" alt="زيت الأرغان للشعر">
+          <h3>زيت الأرغان للشعر</h3>
+          <p>مزيج من زيوت الأرغان وإكليل الجبل لتقوية الشعر ومنحه لمعاناً وحيوية.</p>
+          <div class="product-buttons">
+            <a href="https://api.whatsapp.com/send/?phone=962795982044" class="btn btn-primary">شراء الآن</a>
+            <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product5">التفاصيل</a>
+          </div>
+        </div>
+
+        <!-- منتج 6: سيروم ألفا أربوتين -->
+        <div class="product-card">
+          <img src="img/serum.png" alt="سيروم ألفا أربوتين">
+          <h3>سيروم ألفا أربوتين</h3>
+          <p>سيروم متقدم لتفتيح البشرة وتقليل البقع الداكنة بتركيز عالٍ من ألفا أربوتين وفيتامين C.</p>
+          <div class="product-buttons">
+            <a href="https://api.whatsapp.com/send/?phone=962795982044" class="btn btn-primary">شراء الآن</a>
+            <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product6">التفاصيل</a>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Slider Navigation -->
+  <div class="slider-controls">
+    <button class="slider-btn" id="prevBtn" aria-label="الشريحة السابقة">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+    <button class="slider-btn" id="nextBtn" aria-label="الشريحة التالية">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+  </div>
+
+  <!-- Slider Dots -->
+  <div class="slider-dots" id="dotsContainer"></div>
+  </section>
+
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-image">
+          <img src="img/index.jpg" alt="Lana ProCare">
+        </div>
+        <div class="about-text">
+          <h2 class="section-title">عن
+            <span class="lana">Lana</span>
+            <span class="procare">
+
+              ProCare
+            </span>
+          </h2>
+          <p>
+            تقدم Lana ProCare منتجات عناية فاخرة تجمع بين الطبيعة والابتكار، لتمنح بشرتك إشراقة صحية وجمال طبيعي.
+            كل منتج صُمم بعناية فائقة باستخدام مكونات فعّالة لضمان أفضل النتائج.
+          </p>
+          <p>
+            هدفنا هو تقديم تجربة فاخرة لكل من يستخدم منتجاتنا، مع الاهتمام بأدق التفاصيل لضمان الجودة والفعالية.
+          </p>
+          <a href="#products" class="btn btn-primary">اكتشف منتجاتنا</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <h2 class="section-title">تواصل معنا</h2>
+      <p class="contact-desc">يمكنك التواصل معنا مباشرة عبر الواتساب أو زيارة صفحاتنا على وسائل التواصل الاجتماعي:</p>
+
+       <div class="contact-buttons">
+        <a href="https://api.whatsapp.com/send/?phone=962795982044" class="btn whatsapp-btn" target="_blank"><i
+            class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://www.facebook.com/lanaprocare" class="btn facebook-btn" target="_blank"><i
+            class="fab fa-facebook-f"></i> Facebook</a>
+        <a href="https://www.instagram.com/lana_procare/" class="btn instagram-btn" target="_blank"><i
+            class="fab fa-instagram"></i> Instagram</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer Section -->
+  <footer class="footer-section">
+    <div class="container footer-content">
+      <div class="footer-about">
+        <h3>
+          <span class="lana">Lana</span><span class="procare"> ProCare</span>
+        </h3>
+        <p>
+          نقدم منتجات عناية فاخرة تجمع بين الطبيعة والابتكار لتمنحك بشرة صحية وجمال طبيعي.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="#about">عن Lana ProCare</a></li>
+          <li><a href="#products">منتجاتنا</a></li>
+          <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+      </div>
+
+      <!-- Footer Social Icons -->
+      <div class="footer-social">
+        <h4>تابعنا</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/lana.organics" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/lana_procare/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://api.whatsapp.com/send/?phone=962795982044"  target="_blank"><i class="fab fa-whatsapp"></i></a>
+          
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Lana ProCare. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+
+
+
+  <script>
+
+    const productsData = {
+      'product1': {
+        title: 'زبدة الجسم بالمانجا  ',
+        description: 'زبدةالجسم بالمانجا تساعد على ترطيب البشرة بعمق، مما يمنحها نعومة فورية و رائحة منعشة و تعزز راحة البشرة وتضيف لمسة من الانتعاش طوال اليوم',
+        image: 'img/bodybutter.png',
+        price: '9.00 دينار'
+      },
+      'product2': {
+        title: 'زيت الجسم للبشرة الناعمة',
+        description: 'تركيبة غنية من الزيوت الطبيعية والفيتامينات، مصممة خصيصاً لترطيب البشرة بعمق ومنحها ملمساً حريرياً. يمتص بسرعة ولا يترك أي إحساس دهني. مثالي للاستخدام اليومي بعد الاستحمام.',
+        image: 'img/bodyoil.png',
+        price: '7.00 دينار'
+      },
+      'product3': {
+        title: 'مقشر الجسم بالقهوة  ',
+        description: 'هذا المنتج يقشّر البشرة بلطف ، مما يساعد على إزالة الخلايا الميتة و الشوائب و بفضل تركيبته الغنية يترك بشرتك ناعمة، منعشة ومشرقة ، معززًا إشراقتها الطبيعية ليمنحك مظهرًا صحيًا وحيويًا.. كما يساهم في تحسين ملمس البشرة مما يجعلها أكثر نعومة وحيوية مع الاستخدام المنتظم',
+        image: 'img/bodyscrub.png',
+        price: '10.00 دينار'
+      },
+      'product4': {
+        title: 'مزيل عرق لا سواه',
+        description: 'مزيل عرق طبيعي وفعال يوفر حماية طويلة الأمد من الرائحة دون سد المسام. تركيبة لطيفة على البشرة الحساسة وخالية من المواد الكيميائية الضارة. يمنح شعوراً بالانتعاش طوال اليوم.',
+        image: 'img/Deodorants.png',
+        price: '6.00 دينار'
+      },
+      'product5': {
+        title: 'زيت الأرغان للشعر',
+        description: 'تركيبة غنية بزيت الأرجان الطبيعي و إكليل الجبل و فيتامين E تعمل على تعزيز قوة الشعر و ترطيبه بعمق ، تمنح شعرك لمعانًا فائقًا و تساعد على تحسين صحة الشعر و يضفي عليه نعومة و حيوية',
+        image: 'img/hairoil.jpg',
+        price: '12.00 دينار'
+      },
+      'product6': {
+        title: 'سيروم ألفا أربوتين',
+        description: 'سيروم فعال يحتوي على تركيز عالٍ من ألفا أربوتين، المعروف بقدرته على تفتيح البقع الداكنة وتصبغات البشرة. يعزز إشراقة البشرة ويوحد لونها بفعالية وأمان.',
+        image: 'img/serum.png',
+        price: '15.00 دينار'
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // الحصول على عناصر الـ Modal
+      const modal = document.getElementById("productModal");
+      if (!modal) return;
+
+      const closeBtn = modal.querySelector(".close-btn");
+      const modalTitle = modal.querySelector("#modalTitle");
+      const modalImage = modal.querySelector("#modalImage");
+      const modalDescription = modal.querySelector("#modalDescription");
+      const modalPrice = modal.querySelector("#modalPrice");
+      const detailButtons = document.querySelectorAll('.product-detail-btn');
+
+      // وظيفة لفتح الـ Modal وتعبئة البيانات
+      function openModal(productId) {
+        const product = productsData[productId];
+        if (product) {
+          modalTitle.textContent = product.title;
+          modalImage.src = 'img/' + product.image.split('/').pop(); // تأكد من المسار الصحيح
+          modalDescription.textContent = product.description;
+          modalPrice.textContent = product.price;
+          modal.style.display = "flex";
+          document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
+        }
+      }
+
+      // وظيفة لإغلاق الـ Modal
+      function closeModal() {
+        modal.style.display = "none";
+        document.body.style.overflow = 'auto'; // السماح بالتمرير في الخلفية
+      }
+
+      // ربط زر الإغلاق
+      closeBtn.onclick = closeModal;
+
+      // إغلاق الـ Modal عند النقر خارجها
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          closeModal();
+        }
+      }
+
+      // ربط أزرار "التفاصيل"
+      detailButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          const productId = this.getAttribute('data-product-id');
+          openModal(productId);
+        });
+      });
+
+      // =========================================================================
+      // كود الـ Navbar Toggle
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+        const icon = menuToggle.querySelector('i');
+        if (navLinks.classList.contains('show')) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        } else {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      });
+
+      // إغلاق القائمة عند النقر على أي رابط
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('show');
+          menuToggle.querySelector('i').classList.remove('fa-times');
+          menuToggle.querySelector('i').classList.add('fa-bars');
+        });
+      });
+
+
+      // =========================================================================
+      // كود الـ Hero Slider
+      const slides = document.querySelectorAll('.slide');
+      const dotsContainer = document.getElementById('dotsContainer');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      let currentSlide = 0;
+
+      // إنشاء النقاط
+      slides.forEach((slide, index) => {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (index === 0) {
+          dot.classList.add('active');
+        }
+        dot.addEventListener('click', () => {
+          goToSlide(index);
+        });
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = document.querySelectorAll('.dot');
+
+      function goToSlide(n) {
+        slides[currentSlide].classList.remove('active');
+        dots[currentSlide].classList.remove('active');
+        currentSlide = (n + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+      }
+
+      function nextSlide() {
+        goToSlide(currentSlide + 1);
+      }
+
+      function prevSlide() {
+        goToSlide(currentSlide - 1);
+      }
+
+      nextBtn.addEventListener('click', nextSlide);
+      prevBtn.addEventListener('click', prevSlide);
+
+      // تشغيل السلايدر تلقائياً
+      let slideInterval = setInterval(nextSlide, 5000);
+
+      // إيقاف التشغيل التلقائي عند التفاعل
+      function stopAutoSlide() {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 5000);
+      }
+
+      dotsContainer.addEventListener('click', stopAutoSlide);
+      prevBtn.addEventListener('click', stopAutoSlide);
+      nextBtn.addEventListener('click', stopAutoSlide);
+
+      // =========================================================================
+      // كود الـ Scroll Header
+      const header = document.querySelector('.galaxy-header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+
+      // =========================================================================
+      // كود الـ Particles
+      const particlesContainer = document.getElementById('particlesContainer');
+
+      function createParticle() {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.width = Math.random() * 3 + 1 + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDuration = Math.random() * 10 + 10 + 's';
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        particlesContainer.appendChild(particle);
+
+        // إزالة الجسيم بعد انتهاء الحركة لتجنب تراكم العناصر
+        setTimeout(() => {
+          particle.remove();
+        }, parseFloat(particle.style.animationDuration) * 1000);
+      }
+
+      // إنشاء الجسيمات بشكل مستمر
+      setInterval(createParticle, 500);
+
+    });
+
+    // Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    // Close menu when a link is clicked (on mobile)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('show')) {
+          navLinks.classList.remove('show');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

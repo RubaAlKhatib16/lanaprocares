@@ -1,0 +1,120 @@
+/* lana_procare_rtl.css */
+
+/* 1. Base RTL adjustments */
+body {
+  direction: rtl;
+  text-align: right;
+}
+
+/* 2. Header and Navigation adjustments */
+.galaxy-header {
+  /* Reverses the order of logo and nav-links in LTR, so we need to ensure right alignment */
+  justify-content: space-between; /* Already good, just confirming */
+}
+
+.nav-links {
+  /* Already good, just confirming */
+}
+
+.nav-links li a::before {
+  /* Change underline animation from left to right */
+  right: 0;
+  left: auto;
+}
+
+.nav-links li a::after {
+  /* Change secondary underline animation from left to right */
+  right: 0;
+  left: auto;
+}
+
+/* 3. Hero Slider adjustments */
+.slide.active .hero-text {
+  /* Change text alignment from left to right for RTL */
+  text-align: right;
+  flex: 1;
+}
+
+.slide.active .hero-content {
+  /* Reverse the order of text and image in the hero section for RTL */
+  flex-direction: row-reverse;
+}
+
+.hero-text h1 {
+  /* Ensure main title is right-aligned */
+  text-align: right;
+}
+
+/* 4. Slider Controls adjustments */
+.slider-controls {
+  /* Swap the positions of the next and previous buttons */
+  direction: ltr; /* Temporarily switch to LTR to use 'left' and 'right' properties for positioning */
+}
+
+#prevBtn {
+  /* Previous button should be on the right in RTL */
+  order: 2; /* Move to the right side of the flex container */
+}
+
+#nextBtn {
+  /* Next button should be on the left in RTL */
+  order: 1; /* Move to the left side of the flex container */
+}
+
+/* 5. Products Section adjustments */
+.section-title {
+  /* Ensure title is centered or right-aligned */
+  text-align: center;
+}
+
+.product-card {
+  /* Ensure text is right-aligned inside the card */
+  text-align: right;
+}
+
+.product-buttons {
+  /* Align buttons to the right or center as needed. Keeping centered for now. */
+  justify-content: center;
+}
+
+/* 6. Mobile Menu adjustments (if needed) */
+@media (max-width: 768px) {
+  .nav-links {
+    /* Change mobile menu slide-in from right to left */
+    right: auto;
+    left: -100%; /* Start off-screen to the left */
+  }
+
+  .nav-links.show {
+    /* Slide in from the left */
+    left: 0;
+    right: auto;
+  }
+}
+
+/* 7. Button hover effect adjustments for RTL */
+.btn-primary::before, .btn-secondary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  right: -100%;
+  left: auto;
+  transition: right 0.5s ease;
+}
+
+.btn-secondary::before {
+    background: rgba(249, 214, 122, 0.2);
+}
+
+.btn-primary:hover::before {
+  right: 100%;
+  left: auto;
+}
+
+.btn-secondary:hover::before {
+  right: 0;
+  left: auto;
+}
