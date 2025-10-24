@@ -1387,6 +1387,212 @@
         font-size: 2rem;
       }
     }
+
+    /* ========== CART FIXES ========== */
+body.cart-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 350px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 10000;
+    box-shadow: -5px 0 25px rgba(249, 214, 122, 0.4);
+    transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(5px);
+}
+
+.cart-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cart-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(249, 214, 122, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #f9d67a;
+    background: rgba(0, 0, 0, 0.9);
+    flex-shrink: 0;
+}
+
+.cart-items {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: calc(100vh - 400px);
+}
+
+.cart-summary {
+    padding: 20px;
+    border-top: 1px solid rgba(249, 214, 122, 0.3);
+    color: #fff;
+    background: rgba(0, 0, 0, 0.9);
+    flex-shrink: 0;
+}
+
+/* تحسين عرض العناصر في السلة */
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(249, 214, 122, 0.2);
+}
+
+.cart-item-image {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid rgba(249, 214, 122, 0.3);
+    flex-shrink: 0;
+}
+
+.cart-item-details {
+    flex: 1;
+    color: #fff;
+    text-align: left;
+}
+
+.cart-item-details h4 {
+    font-size: 1.1rem;
+    color: #f9d67a;
+    margin: 0 0 8px 0;
+    font-weight: 600;
+}
+
+.cart-item-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    margin-left: 10px;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.cart-item-quantity input {
+    width: 50px;
+    text-align: center;
+    background: transparent;
+    border: 2px solid #f9d67a;
+    color: #fff;
+    border-radius: 8px;
+    padding: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.cart-item-quantity button {
+    background: #f9d67a;
+    border: none;
+    color: #000;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 700;
+    line-height: 1;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-item-quantity button:hover {
+    background: #fff;
+    transform: scale(1.1);
+}
+
+.remove-item-btn {
+    background: none;
+    border: none;
+    color: #ff4444;
+    font-size: 1.3rem;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: color 0.3s;
+    padding: 5px;
+    flex-shrink: 0;
+}
+
+.remove-item-btn:hover {
+    color: #ff0000;
+    transform: scale(1.1);
+}
+
+/* تحسين التمرير */
+.cart-items::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cart-items::-webkit-scrollbar-track {
+    background: rgba(249, 214, 122, 0.1);
+    border-radius: 3px;
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+    background: #f9d67a;
+    border-radius: 3px;
+}
+
+.cart-items::-webkit-scrollbar-thumb:hover {
+    background: #e0c150;
+}
+
+/* للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .cart-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .cart-items {
+        max-height: calc(100vh - 350px);
+    }
+    
+    .cart-item {
+        gap: 12px;
+    }
+    
+    .cart-item-image {
+        width: 60px;
+        height: 60px;
+    }
+}
   </style>
 </head>
 
@@ -1772,6 +1978,34 @@
   <div class="cart-overlay" id="cartOverlay"></div>
 
   <script>
+
+    /* ==========================
+   Prevent Body Scroll When Cart is Open
+=========================== */
+function preventBodyScroll(prevent) {
+    if (prevent) {
+        document.body.style.overflow = 'hidden';
+        document.body.style.height = '100vh';
+    } else {
+        document.body.style.overflow = '';
+        document.body.style.height = '';
+    }
+}
+
+// تعديل دوال فتح وإغلاق السلة
+function openCart() {
+    cartSidebar.classList.add('open');
+    cartOverlay.classList.add('open');
+    preventBodyScroll(true);
+    renderCart();
+}
+
+function closeCart() {
+    cartSidebar.classList.remove('open');
+    cartOverlay.classList.remove('open');
+    preventBodyScroll(false);
+}
+
     document.addEventListener('DOMContentLoaded', () => {
 
       /* ==========================
@@ -1883,26 +2117,112 @@
       for (let i = 0; i < 50; i++) createParticle();
       setInterval(createParticle, 500);
 
-      /* ==========================
-         Cart Functionality
-      =========================== */
-      let cart = [];
-      const productsData = {
-        'product1': { title: 'Mango Body Butter', price: 9, image: 'img/bodybutter.png' },
-        'product2': { title: 'Soft Skin Body Oil', price: 7, image: 'img/bodyoil.png' },
-        'product3': { title: 'Coffee Body Scrub', price: 10, image: 'img/bodyscrub.png' },
-        'product4': { title: 'La Soie Deodorant', price: 6, image: 'img/Deodorants.png' },
-        'product5': { title: 'Argan Hair Oil', price: 12, image: 'img/hairoil.jpg' },
-        'product6': { title: 'Alpha Arbutin Serum', price: 15, image: 'img/serum.png' }
-      };
-      const cartSidebar = document.getElementById('cartSidebar');
-      const cartOverlay = document.getElementById('cartOverlay');
-      const openCartBtn = document.getElementById('openCartBtn');
-      const closeCartBtn = document.getElementById('closeCartBtn');
-      const cartItemsContainer = document.getElementById('cartItems');
-      const cartSummaryContainer = document.getElementById('cartSummary');
-      const cartCount = document.getElementById('cartCount');
-      const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+     /* ==========================
+   Enhanced Cart Functions
+=========================== */
+function openCart() {
+    cartSidebar.classList.add('open');
+    cartOverlay.classList.add('open');
+    document.body.classList.add('cart-open');
+    renderCart();
+    
+    // إضافة تأثير عند الفتح
+    cartSidebar.style.transform = 'translateX(0)';
+}
+
+function closeCart() {
+    cartSidebar.classList.remove('open');
+    cartOverlay.classList.remove('open');
+    document.body.classList.remove('cart-open');
+    
+    // إعادة التعيين للتأثير
+    setTimeout(() => {
+        cartSidebar.style.transform = '';
+    }, 400);
+}
+
+// تحسين دالة renderCart
+function renderCart() {
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+            <div class="empty-cart-message" style="text-align: center; padding: 50px 20px; color: #aaa;">
+                <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
+                <h3 style="color: #f9d67a; margin-bottom: 10px;">Your cart is empty</h3>
+                <p>Add some products to get started!</p>
+            </div>
+        `;
+        cartSummaryContainer.innerHTML = '';
+        return;
+    }
+
+    cartItemsContainer.innerHTML = '';
+    let subtotal = 0;
+
+    cart.forEach(item => {
+        const product = productsData[item.id];
+        if (!product) return;
+        
+        const itemTotal = product.price * item.quantity;
+        subtotal += itemTotal;
+
+        const cartItemHTML = `
+            <div class="cart-item" data-product-id="${item.id}">
+                <img src="${product.image}" alt="${product.title}" class="cart-item-image">
+                <div class="cart-item-details">
+                    <h4>${product.title}</h4>
+                    <div class="cart-item-quantity">
+                        <button class="qty-decrease" data-id="${item.id}" title="Decrease quantity">-</button>
+                        <input type="number" value="${item.quantity}" min="1" class="qty-input" data-id="${item.id}" readonly>
+                        <button class="qty-increase" data-id="${item.id}" title="Increase quantity">+</button>
+                    </div>
+                </div>
+                <span class="cart-item-price">${itemTotal.toFixed(2)} JOD</span>
+                <button class="remove-item-btn" data-id="${item.id}" title="Remove item">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `;
+        cartItemsContainer.innerHTML += cartItemHTML;
+    });
+
+    const discountRate = 0.50;
+    const discount = subtotal * discountRate;
+    const total = subtotal - discount;
+
+    const summaryHTML = `
+        <div style="margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 1.1rem;">
+                <span>Subtotal:</span>
+                <span>${subtotal.toFixed(2)} JOD</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 1.1rem;">
+                <span>50% Discount:</span>
+                <span style="color: #4CAF50;">-${discount.toFixed(2)} JOD</span>
+            </div>
+            <div class="total-row" style="display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: 700; color: #f9d67a; margin-top: 15px; padding-top: 15px; border-top: 2px solid rgba(249, 214, 122, 0.3);">
+                <span>Total:</span>
+                <span>${total.toFixed(2)} JOD</span>
+            </div>
+        </div>
+        <button class="btn btn-primary" id="completeOrderBtn" style="width: 100%; padding: 15px; font-size: 1.1rem; margin-top: 10px;">
+            <i class="fas fa-shopping-bag"></i> Complete Order
+        </button>
+        <div class="checkout-form" id="checkoutForm" style="display:none; margin-top: 20px;">
+            <h3 style="color: #f9d67a; margin-bottom: 20px; text-align: center; font-size: 1.3rem;">
+                <i class="fas fa-shipping-fast"></i> Shipping Details
+            </h3>
+            <input type="text" id="customerName" placeholder="Full Name" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #f9d67a; background: rgba(0, 0, 0, 0.7); color: #fff; border-radius: 8px; font-size: 1rem;">
+            <input type="tel" id="customerPhone" placeholder="Phone Number" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #f9d67a; background: rgba(0, 0, 0, 0.7); color: #fff; border-radius: 8px; font-size: 1rem;">
+            <input type="text" id="customerAddress" placeholder="Address (City, District, Street)" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 2px solid #f9d67a; background: rgba(0, 0, 0, 0.7); color: #fff; border-radius: 8px; font-size: 1rem;">
+            <button class="btn btn-primary" id="submitOrderBtn" style="width: 100%; padding: 15px; font-size: 1.1rem;">
+                <i class="fab fa-whatsapp"></i> Send Order via WhatsApp
+            </button>
+        </div>
+    `;
+    cartSummaryContainer.innerHTML = summaryHTML;
+
+    attachCartEventListeners();
+}
 
       /* ==========================
          Cart Persistence
