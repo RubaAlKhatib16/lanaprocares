@@ -15,6 +15,19 @@
 
   <style>
     * {
+      /* Hide the quantity input arrows */
+      -moz-appearance: textfield;
+      -webkit-appearance: textfield;
+      appearance: textfield;
+    }
+
+    .cart-item-quantity input::-webkit-outer-spin-button,
+    .cart-item-quantity input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -101,7 +114,7 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      margin-right: 20px; /* For RTL layout */
+      margin-right: 20px;
       text-decoration: none;
       white-space: nowrap;
     }
@@ -337,13 +350,11 @@
       max-width: 85%;
       border: 1px solid rgba(249, 214, 122, 0.2);
       box-shadow: 0 20px 60px rgba(249, 214, 122, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      animation: slideInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       position: relative;
       z-index: 3;
     }
 
     .hero-content img {
-      /* تم نقل التنسيق الخاص بالصورة إلى .slide.active .hero-content img */
       object-fit: contain;
       filter: drop-shadow(0 20px 40px rgba(249, 214, 122, 0.3));
       transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -351,12 +362,9 @@
     }
 
     @keyframes imageFloat {
-
-      0%,
-      100% {
+      0%, 100% {
         transform: translateY(0px);
       }
-
       50% {
         transform: translateY(-20px);
       }
@@ -396,12 +404,9 @@
     }
 
     @keyframes titleGlow {
-
-      0%,
-      100% {
+      0%, 100% {
         text-shadow: 0 0 20px rgba(249, 214, 122, 0.3);
       }
-
       50% {
         text-shadow: 0 0 40px rgba(249, 214, 122, 0.6);
       }
@@ -520,437 +525,584 @@
     }
 
     .btn-secondary:hover {
+      background: rgba(249, 214, 122, 0.1);
       color: #fff;
-      border-color: #fff;
-      box-shadow: 0 10px 30px rgba(249, 214, 122, 0.4);
-      transform: translateY(-3px);
+      box-shadow: 0 0 30px rgba(249, 214, 122, 0.4);
     }
 
-    /* Slider Navigation Dots */
-    .slider-dots {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 15px;
-      z-index: 10;
-    }
-
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(249, 214, 122, 0.3);
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      border: 2px solid transparent;
-    }
-
-    .dot.active {
-      background: #f9d67a;
-      width: 30px;
-      border-radius: 6px;
-      box-shadow: 0 0 20px rgba(249, 214, 122, 0.6);
-    }
-
-    .dot:hover {
-      background: rgba(249, 214, 122, 0.6);
-      transform: scale(1.2);
-    }
-
-    /* Slider Controls */
-    .slider-controls {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 30px;
-      z-index: 10;
-      transform: translateY(-50%);
-      pointer-events: none;
-    }
-
-    .slider-controls .slider-btn {
-      pointer-events: auto;
-    }
-
-    @media (max-width: 768px) {
-      .slider-controls {
-        padding: 0 15px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .slider-controls {
-        display: none;
-      }
-    }
-
-    .slider-btn {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: rgba(249, 214, 122, 0.2);
-      border: 2px solid rgba(249, 214, 122, 0.4);
-      color: #f9d67a;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .slider-btn:hover {
-      background: rgba(249, 214, 122, 0.4);
-      border-color: #f9d67a;
-      box-shadow: 0 0 20px rgba(249, 214, 122, 0.5);
-      transform: scale(1.1);
-    }
-
-    .slider-btn:active {
-      transform: scale(0.95);
-    }
-
-    /* ========== RESPONSIVE STYLES ========== */
-    @media (max-width: 1024px) {
-      .nav-links {
-        gap: 25px;
-      }
-
-      .nav-links li a {
-        font-size: 0.95rem;
-      }
-
-      .hero-content h1 {
-        font-size: 2.8rem;
-      }
-
-      .hero-content p {
-        font-size: 1.1rem;
-      }
-
-      .hero-content img {
-        width: 280px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .galaxy-header {
-        padding: 12px 20px;
-      }
-
-      .galaxy-header.scrolled {
-        padding: 10px 20px;
-      }
-
-      .logo img {
-        width: 120px;
-      }
-
-      .nav-links {
-        position: fixed;
-        top: 60px;
-        right: -100%;
-        background: rgba(0, 0, 0, 0.95);
-        flex-direction: column;
-        width: 100%;
-        display: flex;
-        gap: 15px;
-        padding: 30px 20px;
-        backdrop-filter: blur(15px);
-        border-bottom: 1px solid rgba(249, 214, 122, 0.2);
-        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        z-index: 999;
-      }
-
-      .nav-links.show {
-        right: 0;
-      }
-
-      .lang-switch {
-        margin-right: 0;
-        margin-top: 10px;
-      }
-    }
-
-      .nav-links li a {
-        font-size: 1.1rem;
-        padding: 12px 0;
-      }
-
-      .menu-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .galaxy-hero-slider {
-        margin-top: 0;
-      }
-
-      .hero-content {
-        padding: 35px 25px;
-        max-width: 95%;
-        border-radius: 20px;
-      }
-
-      .hero-content h1 {
-        font-size: 2rem;
-      }
-
-      .hero-content p {
-        font-size: 1rem;
-      }
-
-      .hero-content img {
-        width: 220px;
-        margin-bottom: 20px;
-      }
-
-      .hero-buttons {
-        gap: 12px;
-      }
-
-      .hero-buttons .btn {
-        padding: 12px 25px;
-        font-size: 0.95rem;
-      }
-
-      .slider-controls {
-        padding: 0 15px;
-      }
-
-      .slider-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-      }
-
-      .slider-dots {
-        bottom: 30px;
-        gap: 10px;
-      }
-
-      .dot {
-        width: 10px;
-        height: 10px;
-      }
-
-      .dot.active {
-        width: 25px;
-      }
-  
-
-    @media (max-width: 480px) {
-      .galaxy-header {
-        padding: 10px 15px;
-      }
-
-      .logo img {
-        width: 100px;
-      }
-
-      .nav-links li a {
-        font-size: 1rem;
-      }
-
-      .hero-content {
-        padding: 25px 15px;
-      }
-
-      .hero-content h1 {
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-      }
-
-      .hero-content p {
-        font-size: 0.9rem;
-        margin-bottom: 20px;
-      }
-
-      .hero-content img {
-        width: 150px;
-      }
-
-      .slide.active .hero-content img {
-        max-width: 150px;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .hero-buttons .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-        width: 100%;
-      }
-
-      .slider-controls {
-        display: none;
-      }
-
-      .slider-dots {
-        bottom: 20px;
-        gap: 8px;
-      }
-
-      .dot {
-        width: 8px;
-        height: 8px;
-      }
-
-      .dot.active {
-        width: 20px;
-      }
-    }
-
-    /* Logo text styles */
-
-    /* ========== MODAL STYLES ========== */
-    .modal {
-      position: fixed;
-      z-index: 2000;
-      /* أعلى من كل شيء آخر */
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.8);
-      /* خلفية داكنة شفافة */
-      display: none;
-      /* مخفي افتراضياً */
-      align-items: center;
-      /* للتحكم العمودي */
-      justify-content: center;
-      /* للتحكم الأفقي */
-      backdrop-filter: blur(5px);
-      animation: fadeIn 0.3s ease-out;
-    }
-
-    .modal-content {
-      background-color: #0a0a0a;
-      padding: 30px;
-      border: 1px solid #f9d67a;
-      width: 90%;
-      max-width: 800px;
-      border-radius: 20px;
-      box-shadow: 0 10px 50px rgba(249, 214, 122, 0.4);
+    /* ========== SECTIONS STYLES ========== */
+    .section {
+      padding: 80px 40px;
+      text-align: center;
       position: relative;
-      animation: slideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      color: #e8e8e8;
-      text-align: right;
+      z-index: 10;
+      background: #000;
     }
 
-    .close-btn {
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
       color: #f9d67a;
-      font-size: 35px;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      cursor: pointer;
+      margin-bottom: 50px;
+      position: relative;
+      display: inline-block;
+      font-weight: 700;
+    }
+
+    .section-title::after {
+      content: "";
       position: absolute;
-      top: 15px;
-      right: 25px;
+      bottom: -10px;
+      right: 0;
+      width: 50%;
+      height: 3px;
+      background: linear-gradient(90deg, #f9d67a 0%, #d4a574 100%);
+      border-radius: 5px;
+      left: 50%;
+      transform: translateX(50%);
     }
 
-    .close-btn:hover,
-    .close-btn:focus {
-      color: #fff;
-      text-decoration: none;
-      transform: scale(1.1);
-    }
-
-    .modal-title {
-      color: #f9d67a;
-      font-size: 2rem;
-      margin-bottom: 20px;
-      border-bottom: 2px solid rgba(249, 214, 122, 0.5);
-      padding-bottom: 10px;
-    }
-
-    .modal-body {
+    /* ========== ABOUT SECTION STYLES ========== */
+    .about-content {
       display: flex;
+      align-items: center;
+      gap: 50px;
+      text-align: right;
       flex-direction: row-reverse;
-      gap: 30px;
-      align-items: flex-start;
     }
 
-    .modal-text-content {
+    .about-text {
       flex: 1;
     }
 
-    .modal-body img {
-      flex-basis: 300px;
-      /* عرض ثابت للصورة */
-      max-width: 300px;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 5px 25px rgba(249, 214, 122, 0.3);
+    .about-text h3 {
+      font-size: 2rem;
+      color: #f9d67a;
+      margin-bottom: 20px;
+      font-weight: 600;
     }
 
-    .modal-body p {
+    .about-text p {
+      font-size: 1.1rem;
+      color: #ccc;
       line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .about-image {
+      flex-shrink: 0;
+      width: 400px;
+      position: relative;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 20px 50px rgba(249, 214, 122, 0.3);
+      transition: transform 0.5s ease;
+    }
+
+    .about-image img:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 992px) {
+      .about-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about-image {
+        width: 80%;
+        margin-bottom: 30px;
+      }
+
+      .about-text {
+        text-align: center;
+      }
+    }
+
+    /* ========== PRODUCTS SECTION STYLES ========== */
+    .products-section {
+      background: #0a0a0a;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: rgba(10, 10, 10, 0.8);
+      border: 1px solid rgba(249, 214, 122, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(249, 214, 122, 0.2);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
       margin-bottom: 15px;
+      transition: transform 0.3s ease;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0
-      }
-
-      to {
-        opacity: 1
-      }
+    .product-card img:hover {
+      transform: scale(1.03);
     }
 
-    @keyframes slideIn {
-      from {
-        transform: translateY(-50px);
-        opacity: 0
-      }
+    .product-card h3 {
+      font-size: 1.5rem;
+      color: #f9d67a;
+      margin-bottom: 10px;
+    }
 
-      to {
-        transform: translateY(0);
-        opacity: 1
-      }
+    .product-card p {
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 20px;
+      min-height: 40px;
+    }
+
+    .product-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .product-buttons .btn {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      border-radius: 50px;
+    }
+
+    .product-buttons .btn-primary {
+      background: linear-gradient(135deg, #f9d67a 0%, #e0c150 100%);
+      color: #000;
+      box-shadow: 0 5px 15px rgba(249, 214, 122, 0.3);
+    }
+
+    .product-buttons .btn-primary:hover {
+      background: linear-gradient(135deg, #fff 0%, #f9d67a 100%);
+      box-shadow: 0 8px 20px rgba(249, 214, 122, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .product-buttons .btn-secondary {
+      border: 2px solid #f9d67a;
+      color: #f9d67a;
+      background: transparent;
+    }
+
+    .product-buttons .btn-secondary:hover {
+      background: rgba(249, 214, 122, 0.1);
+      color: #fff;
     }
 
     @media (max-width: 768px) {
-      .modal-content {
-        width: 95%;
-        padding: 20px;
+      .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       }
 
-      .modal-body {
+      .product-card img {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-buttons {
         flex-direction: column;
-        /* تغيير التخطيط إلى عمودي في الشاشات الصغيرة */
-        align-items: center;
       }
 
-      .modal-body img {
-        max-width: 80%;
-        width: auto;
-        margin-bottom: 20px;
+      .product-buttons .btn {
+        width: 100%;
+      }
+    }
+
+    /* ========== FOOTER STYLES ========== */
+    .footer {
+      background: #0a0a0a;
+      border-top: 1px solid rgba(249, 214, 122, 0.1);
+      padding: 40px 40px 20px;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo img {
+      width: 100px;
+      filter: drop-shadow(0 0 10px rgba(249, 214, 122, 0.3));
+    }
+
+    .footer-links ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      color: #f9d67a;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .social-icons a {
+      color: #f9d67a;
+      font-size: 1.5rem;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(249, 214, 122, 0.1);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        flex-direction: column;
+        gap: 20px;
       }
 
-      .modal-text-content {
-        text-align: center;
-        /* توسيط النص في المودال للهواتف */
+      .footer-links ul {
+        flex-direction: column;
+        gap: 10px;
       }
+    }
 
-      .modal-title {
-        font-size: 1.5rem;
-      }
+    /* ========== WHATSAPP BUTTON STYLES ========== */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #25d366;
+      color: #fff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
 
-      .close-btn {
-        font-size: 30px;
-        top: 10px;
-        right: 15px;
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* ========== Language Switch Button STYLES ========== */
+    .lang-switch {
+      background: none;
+      border: 2px solid #f9d67a;
+      color: #f9d67a;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-right: 20px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .lang-switch:hover {
+      background: #f9d67a;
+      color: #000;
+      box-shadow: 0 0 15px rgba(249, 214, 122, 0.8);
+    }
+
+    /* ========== NEW CART STYLES ========== */
+    .cart-icon-btn {
+      background: none;
+      border: none;
+      color: #f9d67a;
+      font-size: 1.5rem;
+      cursor: pointer;
+      position: relative;
+      margin-left: 20px;
+      transition: color 0.3s;
+    }
+
+    .cart-icon-btn:hover {
+      color: #fff;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      background: #f00;
+      color: #fff;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 0.8rem;
+      min-width: 20px;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    /* Cart Sidebar Styles */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      left: -350px;
+      width: 350px;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      box-shadow: 5px 0 15px rgba(249, 214, 122, 0.3);
+      transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-sidebar.open {
+      left: 0;
+    }
+
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .cart-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-header {
+      padding: 20px;
+      border-bottom: 1px solid rgba(249, 214, 122, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #f9d67a;
+    }
+
+    .close-cart-btn {
+      background: none;
+      border: none;
+      color: #f9d67a;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close-cart-btn:hover {
+      color: #fff;
+    }
+
+    .cart-items {
+      flex-grow: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .empty-cart-message {
+      color: #aaa;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+
+    .cart-item-image {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid rgba(249, 214, 122, 0.3);
+    }
+
+    .cart-item-details {
+      flex-grow: 1;
+      color: #fff;
+      text-align: right;
+    }
+
+    .cart-item-details h4 {
+      font-size: 1rem;
+      margin: 0 0 5px 0;
+      color: #f9d67a;
+    }
+
+    .cart-item-details p {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .cart-item-price {
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    .cart-item-quantity {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .cart-item-quantity input {
+      width: 40px;
+      text-align: center;
+      background: transparent;
+      border: 1px solid #f9d67a;
+      color: #fff;
+      border-radius: 5px;
+      padding: 2px;
+    }
+
+    .cart-item-quantity button {
+      background: #f9d67a;
+      border: none;
+      color: #000;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: 700;
+      line-height: 1;
+      transition: background 0.3s;
+    }
+
+    .cart-item-quantity button:hover {
+      background: #fff;
+    }
+
+    .remove-item-btn {
+      background: none;
+      border: none;
+      color: #f00;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-right: 10px;
+      transition: color 0.3s;
+    }
+
+    .remove-item-btn:hover {
+      color: #ff5555;
+    }
+
+    .cart-summary {
+      padding: 20px;
+      border-top: 1px solid rgba(249, 214, 122, 0.2);
+      color: #fff;
+    }
+
+    .cart-summary div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .cart-summary .total-row {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #f9d67a;
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(249, 214, 122, 0.3);
+    }
+
+    .cart-summary .btn-primary {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    /* Checkout Form Styles */
+    .checkout-form {
+      padding: 20px;
+      background: rgba(249, 214, 122, 0.1);
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .checkout-form h3 {
+      color: #f9d67a;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .checkout-form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #f9d67a;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border-radius: 5px;
+      text-align: right;
+    }
+
+    .checkout-form input::placeholder {
+      color: #aaa;
+    }
+
+    .checkout-form .btn-primary {
+      margin-top: 10px;
+    }
+
+    @media (max-width: 480px) {
+      .cart-sidebar {
+        width: 100%;
       }
     }
 
@@ -968,1440 +1120,501 @@
       text-shadow: 0 0 15px rgba(249, 214, 122, 0.3);
     }
 
-
-
-    /* ====== Products Section ====== */
-    .products-section {
-      padding: 100px 20px;
-      background: #0a0a0a;
-      color: #f9d67a;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2.8rem;
-      margin-bottom: 60px;
-      color: #f9d67a;
-      text-shadow: 0 0 20px rgba(249, 214, 122, 0.5);
-      font-weight: 700;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      /* 3 منتجات لكل صف */
-      gap: 40px;
-      justify-items: center;
-    }
-
-    .product-card {
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 20px;
-      padding: 25px;
-      text-align: center;
-      border: 1px solid rgba(249, 214, 122, 0.2);
-      box-shadow: 0 15px 50px rgba(249, 214, 122, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 40px 10px rgba(249, 214, 122, 0.5);
-    }
-
-
-    .product-card img {
-      width: 100%;
-      max-width: 200px;
-      border-radius: 15px;
-      margin-bottom: 20px;
-      object-fit: contain;
-      transition: transform 0.4s ease;
-    }
-
-    .product-card img:hover {
-      transform: scale(1.05);
-    }
-
-    .product-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: #f9d67a;
-    }
-
-    .product-card p {
-      font-size: 1rem;
-      color: #e8e8e8;
-      margin-bottom: 20px;
-    }
-
-    .product-buttons {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .product-buttons .btn {
-      padding: 10px 25px;
-      border-radius: 50px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    /* Primary Button */
-    .product-buttons .btn-primary {
-      background: linear-gradient(135deg, #f9d67a 0%, #e0c150 100%);
-      color: #000;
-      box-shadow: 0 10px 30px rgba(249, 214, 122, 0.3);
-    }
-
-    .product-buttons .btn-primary:hover {
-      background: linear-gradient(135deg, #fff 0%, #f9d67a 100%);
-      box-shadow: 0 15px 40px rgba(249, 214, 122, 0.5);
-      transform: translateY(-3px);
-    }
-
-    /* Secondary Button */
-    .product-buttons .btn-secondary {
-      border: 2px solid #f9d67a;
-      color: #f9d67a;
-      background: transparent;
-      box-shadow: 0 0 20px rgba(249, 214, 122, 0.2);
-    }
-
-    .product-buttons .btn-secondary:hover {
-      color: #fff;
-      border-color: #fff;
-      box-shadow: 0 10px 30px rgba(249, 214, 122, 0.4);
-      transform: translateY(-3px);
-    }
-
-    /* ===== Responsive ===== */
-    @media (max-width: 1024px) {
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        /* 2 منتجات لكل صف */
-        gap: 30px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .products-grid {
-        grid-template-columns: 1fr;
-        /* منتج واحد لكل صف */
-        gap: 25px;
-      }
-
-      .product-card img {
-        max-width: 180px;
-      }
-
-      .section-title {
-        font-size: 2.2rem;
-        margin-bottom: 40px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .product-card img {
-        max-width: 150px;
-      }
-
-      .product-buttons {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .product-buttons .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-        width: 100%;
-      }
-
-      .section-title {
-        font-size: 1.8rem;
-        margin-bottom: 30px;
-      }
-    }
-
-
-    /* ===== About Section ===== */
-    .about-section {
-      padding: 100px 20px;
-      background: #0a0a0a;
-      color: #f9d67a;
-    }
-
-    .about-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 50px;
-      max-width: 1200px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-      flex-direction: row;
-    }
-
-    .about-text {
-      flex: 1;
-    }
-
-    .about-text .section-title {
-      font-size: 2.8rem;
-      margin-bottom: 30px;
-      color: #f9d67a;
-      text-shadow: 0 0 20px rgba(249, 214, 122, 0.5);
-      font-weight: 700;
-    }
-
-    .about-text p {
-      font-size: 1.2rem;
-      line-height: 1.8;
-      margin-bottom: 20px;
-      color: #e8e8e8;
-    }
-
-    .about-text .btn-primary {
-      margin-top: 10px;
-      padding: 12px 30px;
-    }
-
-    .about-image {
-      flex: 1;
-      text-align: center;
-    }
-
-    .about-image img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 20px;
-      object-fit: cover;
-      box-shadow: 0 15px 50px rgba(249, 214, 122, 0.2);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    .about-image img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 20px 60px rgba(249, 214, 122, 0.4);
-    }
-
-    /* ===== Responsive ===== */
-    @media (max-width: 1024px) {
-      .about-content {
-        gap: 30px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .about-content {
-        flex-direction: column-reverse;
-        text-align: center;
-      }
-
-      .about-text .section-title {
-        font-size: 2.2rem;
-      }
-
-      .about-text p {
-        font-size: 1.1rem;
-      }
-
-      .about-image img {
-        max-width: 300px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .about-text .section-title {
-        font-size: 1.8rem;
-      }
-
-      .about-text p {
-        font-size: 1rem;
-      }
-
-      .about-image img {
-        max-width: 250px;
-      }
-    }
-
-    /* ===== Footer Section ===== */
-    .footer-section {
-      background: #0a0a0a;
-      color: #f9d67a;
-      padding: 60px 20px 20px 20px;
-      font-family: 'Cairo', sans-serif;
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      gap: 50px;
-      max-width: 1200px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-    }
-
-    .footer-about h3 {
-      font-size: 1.8rem;
-      margin-bottom: 15px;
-      color: #f9d67a;
-    }
-
-    .footer-about p {
-      font-size: 1rem;
-      color: #e8e8e8;
-      line-height: 1.6;
-    }
-
-    .footer-links h4,
-    .footer-social h4 {
-      font-size: 1.2rem;
-      margin-bottom: 15px;
-      color: #f9d67a;
-    }
-
-    .footer-links ul {
-      list-style: none;
-    }
-
-    .footer-links ul li {
-      margin-bottom: 10px;
-    }
-
-    .footer-links ul li a {
-      color: #f9d67a;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-links ul li a:hover {
-      color: #fff;
-    }
-
-    .footer-social .social-icons {
-      display: flex;
-      gap: 15px;
-    }
-
-    .footer-social .social-icons a {
-      font-size: 1.5rem;
-      color: #f9d67a;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-
-    .footer-social .social-icons a:hover {
-      color: #fff;
-      transform: scale(1.2);
-    }
-
-    .footer-bottom {
-      text-align: center;
-      margin-top: 40px;
-      border-top: 1px solid rgba(249, 214, 122, 0.2);
-      padding-top: 15px;
-      font-size: 0.9rem;
-      color: #e8e8e8;
-    }
-
-    /* ===== Responsive ===== */
-    @media (max-width: 768px) {
-      .footer-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
-      }
-
-      .footer-social .social-icons {
-        justify-content: center;
-      }
-    }
-
-    .footer-social .social-icons a i {
-      color: #f9d67a;
-      font-size: 1.5rem;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-
-    .footer-social .social-icons a:hover i {
-      color: #fff;
-      /* يتحول للون أبيض عند المرور */
-      transform: scale(1.2);
-    }
-
-    /* ===== Order Modal Styles ===== */
-    .order-modal-content {
-      max-width: 900px;
-      padding: 30px;
-      text-align: right;
-    }
-
-    .order-modal-content .modal-title {
-      color: #f9d67a;
-      text-shadow: 0 0 15px rgba(249, 214, 122, 0.4);
-      margin-bottom: 25px;
-      font-size: 2rem;
-      border-bottom: 2px solid rgba(249, 214, 122, 0.2);
-      padding-bottom: 10px;
-    }
-
-    .section-subtitle {
-      color: #f9d67a;
-      font-size: 1.4rem;
-      margin-top: 20px;
-      margin-bottom: 15px;
-      padding-right: 10px;
-      border-right: 4px solid #f9d67a;
-    }
-
-    .products-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-
-    .product-order-card {
-      background: rgba(249, 214, 122, 0.05);
-      border: 1px solid rgba(249, 214, 122, 0.1);
-      border-radius: 10px;
-      padding: 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-
-    .product-order-card:hover {
-      box-shadow: 0 0 20px rgba(249, 214, 122, 0.3);
-      transform: translateY(-2px);
-    }
-
-    .product-order-card img {
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-
-    .product-order-card h4 {
-      color: #fff;
-      font-size: 1rem;
-      margin-bottom: 10px;
-      height: 3em; /* Fixed height for product name */
-      overflow: hidden;
-    }
-
-    .quantity-control {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .quantity-control button {
-      background: #f9d67a;
-      color: #000;
-      border: none;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .quantity-control button:hover {
-      background: #fff;
-    }
-
-    .quantity-control input {
-      width: 40px;
-      text-align: center;
-      border: 1px solid #f9d67a;
-      background: transparent;
-      color: #fff;
-      padding: 5px;
-      border-radius: 5px;
-      font-weight: 600;
-    }
-
-    /* User Details Section */
-    .user-details-section {
-      margin-top: 30px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(249, 214, 122, 0.1);
-    }
-
-    .input-group {
-      margin-bottom: 15px;
-      text-align: right;
-    }
-
-    .input-group label {
-      display: block;
-      color: #f9d67a;
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
-
-    .input-group input[type="text"],
-    .input-group input[type="tel"],
-    .input-group textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid rgba(249, 214, 122, 0.5);
-      border-radius: 8px;
-      background: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      font-size: 1rem;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      font-family: 'Cairo', sans-serif;
-      resize: vertical;
-    }
-
-    .input-group input:focus,
-    .input-group textarea:focus {
-      outline: none;
-      border-color: #fff;
-      box-shadow: 0 0 10px rgba(249, 214, 122, 0.5);
-    }
-
-    /* Submit Button */
-    .order-modal-content .whatsapp-btn {
-      width: 100%;
-      margin-top: 25px;
-      padding: 15px 35px;
-      font-size: 1.1rem;
-      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
-    }
-
-    .order-modal-content .whatsapp-btn:hover {
-      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.8);
-    }
-
-    /* Responsive for Order Modal */
-    @media (max-width: 768px) {
-      .order-modal-content {
-        padding: 20px;
-        max-width: 95%;
-      }
-
-      .products-container {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      }
-
-      .product-order-card img {
-        width: 80px;
-        height: 80px;
-      }
-
-      .order-modal-content .modal-title {
-        font-size: 1.5rem;
-      }
-
-      .section-subtitle {
-        font-size: 1.2rem;
-      }
-    }
-
-    /* General Modal Styles (Already Existing, but ensuring consistency) */
+    /* Modal Styles */
     .modal {
-      display: none;
       position: fixed;
-      z-index: 2000; /* Higher z-index than header */
-      left: 0;
       top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(5px);
+      background-color: rgba(0,0,0,0.7);
+      display: flex;
       justify-content: center;
       align-items: center;
+      z-index: 1000;
     }
 
     .modal-content {
-      background-color: #111;
-      margin: auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 600px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(249, 214, 122, 0.5);
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
       position: relative;
-      animation: fadeIn 0.5s;
     }
 
     .close-btn {
-      color: #f9d67a;
-      float: left; /* RTL adjustment: float to left for close button */
-      font-size: 28px;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-
-    .close-btn:hover,
-    .close-btn:focus {
-      color: #fff;
-      text-decoration: none;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 2rem;
       cursor: pointer;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* End Order Modal Styles */
-
-    /* ===== Contact Section - Social Buttons ===== */
-    .contact-section {
-      padding: 100px 20px;
-      background: #0a0a0a;
-      color: #f9d67a;
-      text-align: center;
-    }
-
-    .contact-section .section-title {
-      font-size: 2.8rem;
-      margin-bottom: 20px;
-      color: #f9d67a;
-      text-shadow: 0 0 20px rgba(249, 214, 122, 0.5);
-      font-weight: 700;
-    }
-
-    .contact-desc {
-      font-size: 1.2rem;
-      margin-bottom: 40px;
-      color: #e8e8e8;
-    }
-
-    .contact-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .contact-buttons .btn {
-      padding: 15px 35px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1rem;
-      text-decoration: none;
-      color: #000;
-      background: linear-gradient(135deg, #f9d67a 0%, #e0c150 100%);
-      transition: all 0.3s ease;
-    }
-
-    .contact-buttons .btn:hover {
-      background: linear-gradient(135deg, #fff 0%, #f9d67a 100%);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(249, 214, 122, 0.5);
-    }
-
-    /* ألوان مميزة للأزرار حسب الخدمة */
-    .whatsapp-btn {
-      background: #25D366;
-      color: #fff;
-    }
-
-    .whatsapp-btn:hover {
-      background: #1ebe57;
-    }
-
-    .facebook-btn {
-      background: #1877F2;
-      color: #fff;
-    }
-
-    .facebook-btn:hover {
-      background: #1356c4;
-    }
-
-    .instagram-btn {
-      background: #E1306C;
-      color: #fff;
-    }
-
-    .instagram-btn:hover {
-      background: #c1275a;
-    }
-
-    /* Responsive */
+    /* ========== RESPONSIVE FIXES ========== */
     @media (max-width: 768px) {
-      .contact-buttons {
+      .galaxy-header {
+        padding: 12px 20px;
+      }
+      
+      .nav-container {
+        position: relative;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(15px);
         flex-direction: column;
+        padding: 20px;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
         gap: 15px;
+      }
+      
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-content p {
+        font-size: 1rem;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .about-content {
+        flex-direction: column;
+      }
+      
+      .about-image {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content {
+        padding: 20px;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+      }
+      
+      .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .section {
+        padding: 60px 20px;
+      }
+      
+      .section-title {
+        font-size: 2rem;
       }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- Navbar -->
   <header class="galaxy-header">
     <div class="logo">
       <a href="#home"><img src="img/logoo-removebg-preview.png" alt="Lana ProCare Logo"></a>
     </div>
     <div class="nav-container">
+      <button class="cart-icon-btn" id="openCartBtn" aria-label="سلة المشتريات">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+
       <ul class="nav-links">
-      <li><a href="#home" class="nav-link active">الرئيسية</a></li>
-      <li><a href="#products" class="nav-link">المنتجات</a></li>
-      <li><a href="#about" class="nav-link">عن البراند</a></li>
-      <li><a href="#contact" class="nav-link">تواصل معنا</a></li>
+        <li><a href="#home" class="nav-link active">الرئيسية</a></li>
+        <li><a href="#products" class="nav-link">المنتجات</a></li>
+        <li><a href="#about" class="nav-link">من نحن</a></li>
+        <li><a href="#contact" class="nav-link">تواصل معنا</a></li>
       </ul>
       <a href="indexen.html" class="lang-switch">English</a>
+      <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
     </div>
-    <button class="menu-toggle" aria-label="Toggle menu">
-      <i class="fas fa-bars"></i>
-    </button>
   </header>
 
+  <main>
+    <!-- ========== HERO SECTION ========== -->
+    <section class="galaxy-hero-slider" id="home">
+      <!-- Particles -->
+      <div class="particle" style="top: 10%; left: 20%;"></div>
+      <div class="particle" style="top: 50%; left: 80%;"></div>
+      <div class="particle" style="top: 80%; left: 40%;"></div>
+      <div class="particle" style="top: 30%; left: 60%;"></div>
+      <div class="particle" style="top: 70%; left: 10%;"></div>
 
-  <!-- Hero Slider -->
-  <section class="galaxy-hero-slider" id="home">
-    <div class="slider-bg" id="particlesContainer"></div>
-    <!-- Slide 1 -->
-    <div class="slide active">
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1>
-            <span class="lana">Lana</span>
-            <span class="procare">ProCare</span>
-
-          </h1>
-          <p>
-            صُممت لتمنحك عناية طبيعية فاخرة تجمع بين المكونات الفعّالة والجودة العالية، لتمنح بشرتك
-            وشعرك إشراقة صحية وجاذبية طبيعية
-          </p>
-          <div class="hero-buttons">
-            <a href="#products" class="btn btn-primary">اكتشفي مجموعتنا</a>
-            <a href="#contact" class="btn btn-secondary">تواصلي مع فريقنا</a>
+      <!-- Slides -->
+      <div class="slide active">
+        <div class="hero-content">
+          <img src="img/index.jpg" alt="منتج العناية">
+          <div class="hero-text">
+            <h1>
+              <span class="procare">ProCare</span>
+              <span class="lana">Lana</span>
+              
+            </h1>
+            <p>
+              صُممت لتمنحك عناية طبيعية فاخرة تجمع بين المكونات الفعّالة والجودة العالية، لتمنح بشرتك
+              وشعرك إشراقة صحية وجاذبية طبيعية
+            </p>
+            <div class="hero-buttons">
+              <a href="#products" class="btn btn-primary">اكتشفي مجموعتنا</a>
+              <a href="#about" class="btn btn-secondary">تعرفي علينا</a>
+            </div>
           </div>
         </div>
-        <img src="img/index.jpg" alt="مجموعة منتجات Lana ProCare الفاخرة">
       </div>
-    </div>
 
-
-    <!-- Slide 2 -->
-    <div class="slide">
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1>
-            <span class="lana">Lana</span>
-            <span class="procare">ProCare</span>
-          </h1>
-          <p>
-            زبدة الجسم بالمانجو: ترطيب عميق وملمس حريري يدوم لساعات
-          </p>
-          <div class="hero-buttons">
-            <a href="#products" class="btn btn-primary">ابدئي رحلتك الآن</a>
+      <div class="slide">
+        <div class="hero-content">
+          <img src="img/bodybutter.png" alt="مكونات طبيعية">
+          <div class="hero-text">
+            <h1>
+              <span class="procare">ProCare</span>
+              <span class="lana">Lana</span>
+              
+            </h1>
+            <p>
+              زبدة الجسم بالمانجو: ترطيب عميق وملمس حريري يدوم لساعات
+            </p>
+            <div class="hero-buttons">
+              <a href="#products" class="btn btn-primary">ابدئي رحلتك الآن</a>
+              <a href="#contact" class="btn btn-secondary">تحدثي إلينا</a>
+            </div>
           </div>
         </div>
-        <img src="img/bodybutter.png" alt="Body Butter Mango">
       </div>
-    </div>
 
-
-    <!-- Slide 3 -->
-    <div class="slide">
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1>
-            <span class="lana">Lana</span>
-            <span class="procare">ProCare</span>
-
-          </h1>
-
-          <p>
-            زيت الأرغان للشعر: اكتشفي سر الإشراقة الدائمة مع منتجاتنا
-          </p>
-          <div class="hero-buttons">
-
-            <a href="#products" class="btn btn-primary">شاهدي المجموعة </a>
+      <div class="slide">
+        <div class="hero-content">
+          <img src="img/bodyoil.png" alt="عرض خاص">
+          <div class="hero-text">
+            <h1>
+              <span class="procare">ProCare</span>
+              <span class="lana">Lana</span>
+              
+            </h1>
+            <p>زيت الجسم: ترطيب عميق وملمس حريري يدوم لساعات </p>
+            <div class="hero-buttons">
+              <a href="#products" class="btn btn-primary">شاهدي المجموعة </a>
+              <a href="#contact" class="btn btn-secondary">تواصلي معنا</a>
+            </div>
           </div>
         </div>
-        <img src="img/hairoil.jpg" alt="Argan Hair Oil">
       </div>
-    </div>
 
-
-    <!-- Slide 4 -->
-    <div class="slide">
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1>
-            <span class="lana">Lana</span>
-            <span class="procare">ProCare</span>
-
-          </h1>
-          <p>زيت الجسم: ترطيب عميق وملمس حريري يدوم لساعات </p>
-          <div class="hero-buttons">
-
-            <a href="#products" class="btn btn-primary">اكتشفي سر التألق </a>
+      <div class="slide">
+        <div class="hero-content">
+          <img src="img/bodyscrub.png" alt="نتائج فورية">
+          <div class="hero-text">
+            <h1>
+              <span class="procare">ProCare</span>
+              <span class="lana">Lana</span>
+            
+            </h1>
+            <p>مقشر الجسم بالقهوة: بشرة ناعمة كالمخمل تبدأ من فنجان قهوة </p>
+            <div class="hero-buttons">
+              <a href="#products" class="btn btn-primary">اكتشفي سر التألق </a>
+              <a href="#about" class="btn btn-secondary">قصتنا</a>
+            </div>
           </div>
         </div>
-        <img src="img/bodyoil.png" alt="Body Oil">
       </div>
-    </div>
 
-
-    <!-- Slide 5 -->
-    <div class="slide">
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1>
-            <span class="lana">Lana</span>
-            <span class="procare">ProCare</span>
-
-          </h1>
-          <p>مقشر الجسم بالقهوة: بشرة ناعمة كالمخمل تبدأ من فنجان قهوة </p>
-          <div class="hero-buttons">
-
-            <a href="#products" class="btn btn-primary">شاهدي المجموعة</a>
+      <div class="slide">
+        <div class="hero-content">
+          <img src="img/hairoil.jpg" alt="توصيل سريع">
+          <div class="hero-text">
+            <h1>
+              <span class="procare">ProCare</span>
+              <span class="lana">Lana</span>
+              
+            </h1>
+            <p>
+              زيت الأرغان للشعر: اكتشفي سر الإشراقة الدائمة مع منتجاتنا
+            </p>
+            <div class="hero-buttons">
+              <a href="#products" class="btn btn-primary">شاهدي المجموعة</a>
+              <a href="#contact" class="btn btn-secondary">للاستفسار</a>
+            </div>
           </div>
         </div>
-        <img src="img/bodyscrub.png" alt="Body Scrub">
       </div>
-    </div>
 
-
-    <!-- Slide 6 -->
-    <div class="slide">
-      <div class="hero-content">
-        <div class="hero-text" style="text-align: right;">
-          <h1>
-            <span class="lana">Lana</span>
-            <span class="procare">ProCare</span>
-          </h1>
-          <p>
-            مزيل العرق: انتعاش يدوم طوال اليوم مع تركيبة طبيعية وآمنة
-          </p>
-          <div class="hero-buttons">
-            <a href="#products" class="btn btn-primary">جربي الانتعاش </a>
-
+      <div class="slide">
+        <div class="hero-content">
+          <img src="img/Deodorants.png" alt="انتعاش">
+          <div class="hero-text">
+            <h1>
+              <span class="procare">ProCare</span>
+              <span class="lana">Lana</span>
+              
+            </h1>
+            <p>
+              مزيل العرق: انتعاش يدوم طوال اليوم مع تركيبة طبيعية وآمنة
+            </p>
+            <div class="hero-buttons">
+              <a href="#products" class="btn btn-primary">جربي الانتعاش </a>
+              <a href="#about" class="btn btn-secondary">لماذا نحن؟</a>
+            </div>
           </div>
         </div>
-        <img src="img/Deodorants.png" alt="مزيل العرق الطبيعي">
       </div>
-    </div>
 
-
-    <!-- Slide 7 -->
-    <div class="slide">
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1>
-            <span class="lana">Lana</span>
-            <span class="procare">ProCare</span>
-
-          </h1>
-          <p>سيروم ألفا أربوتين: مستحضرات تجمع بين الفخامة والنتائج المذهلة</p>
-          <div class="hero-buttons">
-            <a href="#products" class="btn btn-primary">دللي بشرتك </a>
+      <div class="slide">
+        <div class="hero-content">
+          <img src="img/serum.png" alt="دللي بشرتك">
+          <div class="hero-text">
+            <h1>
+              <span class="procare">ProCare</span>
+              <span class="lana">Lana</span>
+              
+            </h1>
+            <p>سيروم ألفا أربوتين: مستحضرات تجمع بين الفخامة والنتائج المذهلة</p>
+            <div class="hero-buttons">
+              <a href="#products" class="btn btn-primary">دللي بشرتك </a>
+              <a href="#contact" class="btn btn-secondary">تحدثي معنا</a>
+            </div>
           </div>
         </div>
-        <img src="img/serum.png" alt="Serum">
       </div>
-    </div>
     </section>
 
-    <!-- Modal Structure -->
-        <!-- Order Modal Structure -->
-    <div id="orderModal" class="modal">
-      <div class="modal-content order-modal-content">
-        <span class="close-btn" id="closeOrderBtn">&times;</span>
-        <h2 class="modal-title">إرسال طلب شراء</h2>
-        <form id="orderForm">
-          <div class="product-selection-section">
-            <h3 class="section-subtitle">اختيار المنتجات</h3>
-            <div id="productsContainer" class="products-container">
-              <!-- Product cards will be inserted here by JavaScript -->
+    <!-- ========== PRODUCTS SECTION ========== -->
+    <section class="section products-section" id="products">
+      <div class="container">
+        <h2 class="section-title">منتجاتنا الفاخرة</h2>
+        <div class="products-grid">
+          <!-- منتج 1: زبدة الجسم بالمانجو -->
+          <div class="product-card">
+            <img src="img/bodybutter.png" alt="زبدة الجسم بالمانجو">
+            <h3>زبدة الجسم بالمانجو</h3>
+            <p>ترطيب عميق وملمس حريري بتركيبة غنية بزبدة الشيا والمانجا وفيتامين E.</p>
+            <div class="product-buttons">
+              <a href="#" class="btn btn-primary add-to-cart-btn" data-product-id="product1">أضف إلى السلة</a>
+              <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product1">التفاصيل</a>
             </div>
           </div>
 
-          <div class="user-details-section">
-            <h3 class="section-subtitle">بيانات العميل</h3>
-            <div class="input-group">
-              <label for="fullName">الاسم الكامل</label>
-              <input type="text" id="fullName" name="fullName" required>
-            </div>
-            <div class="input-group">
-              <label for="phoneNumber">رقم الهاتف (واتساب)</label>
-              <input type="tel" id="phoneNumber" name="phoneNumber" required>
-            </div>
-            <div class="input-group">
-              <label for="address">العنوان (المدينة، المنطقة، تفاصيل)</label>
-              <textarea id="address" name="address" rows="3" required></textarea>
+          <!-- منتج 2: زيت الجسم للبشرة الناعمة -->
+          <div class="product-card">
+            <img src="img/bodyoil.png" alt="زيت الجسم للبشرة الناعمة">
+            <h3>زيت الجسم للبشرة الناعمة</h3>
+            <p>تركيبة خفيفة غنية بزيت جنين القمح والجوجوبا وفيتامين E لجلد ناعم ومشرق.</p>
+            <div class="product-buttons">
+              <a href="#" class="btn btn-primary add-to-cart-btn" data-product-id="product2">أضف إلى السلة</a>
+              <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product2">التفاصيل</a>
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary whatsapp-btn" id="submitOrderBtn">
-            <i class="fab fa-whatsapp"></i> إرسال الطلب عبر واتساب
-          </button>
-        </form>
-      </div>
-    </div>
+          <!--منتج 3: مقشر الجسم بالقهوة  -->
+          <div class="product-card">
+            <img src="img/bodyscrub.png" alt="مقشر الجسم بالقهوة ">
+            <h3>مقشر الجسم بالقهوة </h3>
+            <p>مقشر فعّال يزيل الخلايا الميتة ويفتح البشرة بفضل القهوة .</p>
+            <div class="product-buttons">
+              <a href="#" class="btn btn-primary add-to-cart-btn" data-product-id="product3">أضف إلى السلة</a>
+              <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product3">التفاصيل</a>
+            </div>
+          </div>
 
-    <!-- Existing Product Detail Modal Structure - Renamed to productDetailModal -->
-    <div id="productDetailModal" class="modal">
-      <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2 class="modal-title" id="detailModalTitle">تفاصيل المنتج</h2>
-        <div class="modal-body">
-          <img id="detailModalImage" src="" alt="صورة المنتج">
-          <div class="modal-text-content">
-            <p id="detailModalDescription">هنا سيتم عرض الوصف الكامل للمنتج.</p>
-            <p id="detailModalPrice" style="color: #f9d67a; font-weight: 700; font-size: 1.2rem;"></p>
-            
+          <!-- منتج 4: مزيل عرق لا سواه -->
+          <div class="product-card">
+            <img src="img/Deodorants.png" alt="مزيل عرق لا سواه">
+            <h3>مزيل عرق لا سواه</h3>
+            <p>تركيبة طبيعية وآمنة تضمن انتعاشًا يدوم طوال اليوم دون سد المسام.</p>
+            <div class="product-buttons">
+              <a href="#" class="btn btn-primary add-to-cart-btn" data-product-id="product4">أضف إلى السلة</a>
+              <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product4">التفاصيل</a>
+            </div>
+          </div>
+
+          <!-- منتج 5: زيت الأرغان للشعر -->
+          <div class="product-card">
+            <img src="img/hairoil.jpg" alt="زيت الأرغان للشعر">
+            <h3>زيت الأرغان للشعر</h3>
+            <p>مزيج من زيوت الأرغان وإكليل الجبل لتقوية الشعر ومنحه لمعاناً وحيوية.</p>
+            <div class="product-buttons">
+              <a href="#" class="btn btn-primary add-to-cart-btn" data-product-id="product5">أضف إلى السلة</a>
+              <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product5">التفاصيل</a>
+            </div>
+          </div>
+
+          <!-- منتج 6: سيروم ألفا أربوتين -->
+          <div class="product-card">
+            <img src="img/serum.png" alt="سيروم ألفا أربوتين">
+            <h3>سيروم ألفا أربوتين</h3>
+            <p>سيروم متقدم لتفتيح البشرة وتقليل البقع الداكنة بتركيز عالٍ من ألفا أربوتين وفيتامين C.</p>
+            <div class="product-buttons">
+              <a href="#" class="btn btn-primary add-to-cart-btn" data-product-id="product6">أضف إلى السلة</a>
+              <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product6">التفاصيل</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-  <section class="products-section" id="products">
-    <div class="container">
-      <h2 class="section-title">منتجاتنا الفاخرة</h2>
-      <div class="products-grid">
-        <!-- منتج 1: زبدة الجسم بالمانجو -->
-        <div class="product-card">
-          <img src="img/bodybutter.png" alt="زبدة الجسم بالمانجو">
-          <h3>زبدة الجسم بالمانجو</h3>
-          <p>ترطيب عميق وملمس حريري بتركيبة غنية بزبدة الشيا والمانجا وفيتامين E.</p>
-          <div class="product-buttons">
-            <button class="btn btn-primary order-now-btn">اطلب الآن</button>
-            <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product1">التفاصيل</a>
+    <!-- ========== ABOUT SECTION ========== -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title">قصتنا</h2>
+        <div class="about-content">
+          <div class="about-image">
+            <img src="img/index.jpg" alt="من نحن">
+          </div>
+          <div class="about-text">
+            <h3>
+              <span class="procare">ProCare</span>
+              <span class="lana">Lana</span>
+            </h3>
+            <h3>
+              
+              حيث يلتقي الجمال بالطبيعة</h3>
+            <p>في لانا برو كير، نؤمن بأن العناية بالبشرة والشعر يجب أن تكون تجربة فاخرة وطبيعية في آن واحد. بدأت قصتنا
+              من شغف بتقديم منتجات عالية الجودة، تعتمد على أجود المكونات الطبيعية المستخلصة من قلب الطبيعة. كل منتج
+              نصنعه هو مزيج متقن من العلم والطبيعة، مصمم ليمنحكِ نتائج ملموسة وبشرة وشعراً ينبضان بالحياة.</p>
+            <p>نحن ملتزمون بالشفافية والاستدامة، ونحرص على أن تكون جميع مكوناتنا آمنة، فعالة، وصديقة للبيئة. انضمي إلينا
+              في رحلة الجمال الطبيعي واكتشفي الفرق الذي تصنعه منتجاتنا.</p>
+            <a href="#products" class="btn btn-primary">اكتشف منتجاتنا</a>
           </div>
         </div>
-
-        <!-- منتج 2: زيت الجسم للبشرة الناعمة -->
-        <div class="product-card">
-          <img src="img/bodyoil.png" alt="زيت الجسم للبشرة الناعمة">
-          <h3>زيت الجسم للبشرة الناعمة</h3>
-          <p>تركيبة خفيفة غنية بزيت جنين القمح والجوجوبا وفيتامين E لجلد ناعم ومشرق.</p>
-          <div class="product-buttons">
-            <button class="btn btn-primary order-now-btn">اطلب الآن</button>
-            <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product2">التفاصيل</a>
-          </div>
-        </div>
-
-        <!--منتج 3: مقشر الجسم بالقهوة  -->
-        <div class="product-card">
-          <img src="img/bodyscrub.png" alt="مقشر الجسم بالقهوة ">
-          <h3>مقشر الجسم بالقهوة </h3>
-          <p>مقشر فعّال يزيل الخلايا الميتة ويفتح البشرة بفضل القهوة .</p>
-          <div class="product-buttons">
-            <button class="btn btn-primary order-now-btn">اطلب الآن</button>
-            <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product3">التفاصيل</a>
-          </div>
-        </div>
-
-
-        <!-- منتج 4: مزيل عرق لا سواه -->
-        <div class="product-card">
-          <img src="img/Deodorants.png" alt="مزيل عرق لا سواه">
-          <h3>مزيل عرق لا سواه</h3>
-          <p>تركيبة طبيعية وآمنة تضمن انتعاشًا يدوم طوال اليوم دون سد المسام.</p>
-          <div class="product-buttons">
-            <button class="btn btn-primary order-now-btn">اطلب الآن</button>
-            <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product4">التفاصيل</a>
-          </div>
-        </div>
-
-
-        <!-- منتج 5: زيت الأرغان للشعر -->
-        <div class="product-card">
-          <img src="img/hairoil.jpg" alt="زيت الأرغان للشعر">
-          <h3>زيت الأرغان للشعر</h3>
-          <p>مزيج من زيوت الأرغان وإكليل الجبل لتقوية الشعر ومنحه لمعاناً وحيوية.</p>
-          <div class="product-buttons">
-            <button class="btn btn-primary order-now-btn">اطلب الآن</button>
-            <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product5">التفاصيل</a>
-          </div>
-        </div>
-
-        <!-- منتج 6: سيروم ألفا أربوتين -->
-        <div class="product-card">
-          <img src="img/serum.png" alt="سيروم ألفا أربوتين">
-          <h3>سيروم ألفا أربوتين</h3>
-          <p>سيروم متقدم لتفتيح البشرة وتقليل البقع الداكنة بتركيز عالٍ من ألفا أربوتين وفيتامين C.</p>
-          <div class="product-buttons">
-            <button class="btn btn-primary order-now-btn">اطلب الآن</button>
-            <a href="#" class="btn btn-secondary product-detail-btn" data-product-id="product6">التفاصيل</a>
-          </div>
-        </div>
-
-
       </div>
-    </div>
-  </section>
+    </section>
 
+    <!-- ========== CONTACT SECTION ========== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <h2 class="section-title">تواصل معنا</h2>
+        <div class="contact-content">
+          <p style="color: #ccc; font-size: 1.1rem; margin-bottom: 30px;">لأي استفسارات أو طلبات خاصة، لا تترددي في
+            التواصل معنا. نحن هنا لخدمتكِ.</p>
 
-  <!-- Slider Navigation -->
-  <div class="slider-controls">
-    <button class="slider-btn" id="prevBtn" aria-label="الشريحة السابقة">
-      <i class="fas fa-chevron-right"></i>
-    </button>
-    <button class="slider-btn" id="nextBtn" aria-label="الشريحة التالية">
-      <i class="fas fa-chevron-left"></i>
-    </button>
-  </div>
+          <div class="contact-info"
+            style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; text-align: center;">
 
-  <!-- Slider Dots -->
-  <div class="slider-dots" id="dotsContainer"></div>
-  </section>
+            <div style="color: #f9d67a;">
+              <a href="https://api.whatsapp.com/send/?phone=962795982044&text&type=phone_number&app_absent=0"
+                style="text-decoration: none; color: #fff;">
+                <i class="fas fa-phone-alt" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                <p>
+                  2044 598 97 962+
+                </p>
+              </a>
+            </div>
 
+            <div style="color: #f9d67a;">
+              <a href="https://www.facebook.com/lana.organics" style="text-decoration: none; color: #fff;">
+                <i  class="fab fa-facebook-f" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                <p>lanaprocare</p>
+              </a>
+            </div>
 
-  <!-- About Section -->
-  <section class="about-section" id="about">
-    <div class="container">
-      <div class="about-content">
-        <div class="about-image">
-          <img src="img/index.jpg" alt="Lana ProCare">
+            <div style="color: #f9d67a;">
+              <a href="https://www.instagram.com/lana_procare/" target="_blank"
+                style="text-decoration: none; color: #fff;">
+                <i class="fab fa-instagram" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                <p>LanaProCare@</p>
+              </a>
+            </div>
+          </div>
+          <div style="margin-top: 40px;">
+            <a href="https://wa.me/962795982044" target="_blank" class="btn btn-primary"
+              style="font-size: 1.1rem; padding: 15px 40px;">
+              <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
+            </a>
+          </div>
         </div>
-        <div class="about-text">
-          <h2 class="section-title">عن
-            <span class="lana">Lana</span>
-            <span class="procare">
-
-              ProCare
-            </span>
-          </h2>
-          <p>
-            تقدم Lana ProCare منتجات عناية فاخرة تجمع بين الطبيعة والابتكار، لتمنح بشرتك إشراقة صحية وجمال طبيعي.
-            كل منتج صُمم بعناية فائقة باستخدام مكونات فعّالة لضمان أفضل النتائج.
-          </p>
-          <p>
-            هدفنا هو تقديم تجربة فاخرة لكل من يستخدم منتجاتنا، مع الاهتمام بأدق التفاصيل لضمان الجودة والفعالية.
-          </p>
-          <a href="#products" class="btn btn-primary">اكتشف منتجاتنا</a>
-        </div>
-
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- Contact Section -->
-  <section class="contact-section" id="contact">
-    <div class="container">
-      <h2 class="section-title">تواصل معنا</h2>
-      <p class="contact-desc">يمكنك التواصل معنا مباشرة عبر الواتساب أو زيارة صفحاتنا على وسائل التواصل الاجتماعي:</p>
-
-      <div class="contact-buttons">
-        <a href="https://api.whatsapp.com/send/?phone=962795982044" target="_blank"
-          class="btn btn-primary whatsapp-btn">
-          واتس اب
-        </a>
-        <a href="https://www.facebook.com/lana.organics" target="_blank" class="btn btn-primary facebook-btn">
-          فيسبوك
-        </a>
-        <a href="https://www.instagram.com/lana_procare/" target="_blank" class="btn btn-primary instagram-btn">
-          أنستجرام
-        </a>
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="img/logoo-removebg-preview.png" alt="Lana ProCare Logo">
       </div>
-    </div>
-  </section>
-
-
-  <!-- Footer Section -->
-  <footer class="footer-section">
-    <div class="container footer-content">
-      <div class="footer-about">
-        <h3>
-          <span class="lana">Lana</span><span class="procare"> ProCare</span>
-        </h3>
-        <p>
-          نقدم منتجات عناية فاخرة تجمع بين الطبيعة والابتكار لتمنحك بشرة صحية وجمال طبيعي.
-        </p>
-      </div>
-
       <div class="footer-links">
-        <h4>روابط سريعة</h4>
         <ul>
-          <li><a href="#about">عن Lana ProCare</a></li>
+          <li><a href="#home">الرئيسية</a></li>
           <li><a href="#products">منتجاتنا</a></li>
+          <li><a href="#about">من نحن</a></li>
           <li><a href="#contact">تواصل معنا</a></li>
         </ul>
       </div>
-
-      <!-- Footer Social Icons -->
-      <div class="footer-social">
-        <h4>تابعنا</h4>
-        <div class="social-icons">
-          <a href="https://www.facebook.com/lana.organics" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/lana_procare/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <div class="social-icons">
+          <a href="https://www.facebook.com/lanaprocare" target="_blank" aria-label="Facebook"><i
+              class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/lana_procare/" target="_blank" aria-label="Instagram"><i
+              class="fab fa-instagram"></i></a>
+          <a href="https://api.whatsapp.com/send/?phone=962795982044"  target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
-      </div>
-
     </div>
-
     <div class="footer-bottom">
-      <p>© 2025 Lana ProCare. جميع الحقوق محفوظة.</p>
+      <p>&copy; 2025 Lana ProCare. جميع الحقوق محفوظة.</p>
     </div>
   </footer>
 
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/962795982044" class="whatsapp-btn" target="_blank" aria-label="تواصل عبر واتساب">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
+  <!-- Shopping Cart Sidebar -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h2>سلة المشتريات</h2>
+      <button class="close-cart-btn" id="closeCartBtn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <!-- Cart items will be rendered here -->
+      <p class="empty-cart-message">سلتك فارغة.</p>
+    </div>
+    <div class="cart-summary" id="cartSummary">
+      <!-- Summary and Checkout will be rendered here -->
+    </div>
+  </div>
+  <div class="cart-overlay" id="cartOverlay"></div>
 
+  <!-- Product Detail Modal -->
+  <div id="productModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <img id="modalImage" src="" alt="" style="width: 100%; max-width: 400px; margin-bottom: 20px;">
+      <p id="modalDescription"></p>
+    </div>
+  </div>
 
   <script>
-
-    const productsData = {
-      'product1': {
-        title: 'زبدة الجسم بالمانجا  ',
-        description: 'زبدةالجسم بالمانجا تساعد على ترطيب البشرة بعمق، مما يمنحها نعومة فورية و رائحة منعشة و تعزز راحة البشرة وتضيف لمسة من الانتعاش طوال اليوم',
-        image: 'img/bodybutter.png',
-        price: '9.00 دينار'
-      },
-      'product2': {
-        title: 'زيت الجسم للبشرة الناعمة',
-        description: 'تركيبة غنية من الزيوت الطبيعية والفيتامينات، مصممة خصيصاً لترطيب البشرة بعمق ومنحها ملمساً حريرياً. يمتص بسرعة ولا يترك أي إحساس دهني. مثالي للاستخدام اليومي بعد الاستحمام.',
-        image: 'img/bodyoil.png',
-        price: '7.00 دينار'
-      },
-      'product3': {
-        title: 'مقشر الجسم بالقهوة  ',
-        description: 'هذا المنتج يقشّر البشرة بلطف ، مما يساعد على إزالة الخلايا الميتة و الشوائب و بفضل تركيبته الغنية يترك بشرتك ناعمة، منعشة ومشرقة ، معززًا إشراقتها الطبيعية ليمنحك مظهرًا صحيًا وحيويًا.. كما يساهم في تحسين ملمس البشرة مما يجعلها أكثر نعومة وحيوية مع الاستخدام المنتظم',
-        image: 'img/bodyscrub.png',
-        price: '10.00 دينار'
-      },
-      'product4': {
-        title: 'مزيل عرق لا سواه',
-        description: 'مزيل عرق طبيعي وفعال يوفر حماية طويلة الأمد من الرائحة دون سد المسام. تركيبة لطيفة على البشرة الحساسة وخالية من المواد الكيميائية الضارة. يمنح شعوراً بالانتعاش طوال اليوم.',
-        image: 'img/Deodorants.png',
-        price: '6.00 دينار'
-      },
-      'product5': {
-        title: 'زيت الأرغان للشعر',
-        description: 'تركيبة غنية بزيت الأرجان الطبيعي و إكليل الجبل و فيتامين E تعمل على تعزيز قوة الشعر و ترطيبه بعمق ، تمنح شعرك لمعانًا فائقًا و تساعد على تحسين صحة الشعر و يضفي عليه نعومة و حيوية',
-        image: 'img/hairoil.jpg',
-        price: '12.00 دينار'
-      },
-      'product6': {
-        title: 'سيروم ألفا أربوتين',
-        description: 'سيروم فعال يحتوي على تركيز عالٍ من ألفا أربوتين، المعروف بقدرته على تفتيح البقع الداكنة وتصبغات البشرة. يعزز إشراقة البشرة ويوحد لونها بفعالية وأمان.',
-        image: 'img/serum.png',
-        price: '15.00 دينار'
-      }
-    };
-
-    document.addEventListener('DOMContentLoaded', function() {
-      // الحصول على عناصر الـ Modal
-      const detailModal = document.getElementById("productDetailModal");
-      if (!detailModal) return;
-
-      const detailCloseBtn = detailModal.querySelector(".close-btn");
-      const detailModalTitle = detailModal.querySelector("#detailModalTitle");
-      const detailModalImage = detailModal.querySelector("#detailModalImage");
-      const detailModalDescription = detailModal.querySelector("#detailModalDescription");
-      const detailModalPrice = detailModal.querySelector("#detailModalPrice");
-      const detailButtons = document.querySelectorAll('.product-detail-btn');
-
-      // وظيفة لفتح الـ Modal وتعبئة البيانات
-      function openModal(productId) {
-        const product = productsData[productId];
-        if (product) {
-          detailModalTitle.textContent = product.title;
-          detailModalImage.src = 'img/' + product.image.split('/').pop(); // تأكد من المسار الصحيح
-          detailModalDescription.textContent = product.description;
-          detailModalPrice.textContent = product.price;
-          detailModal.style.display = "flex";
-          document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
-        }
-      }
-
-      // وظيفة لإغلاق الـ Modal
-      function closeDetailModal() {
-        detailModal.style.display = "none";
-        document.body.style.overflow = 'auto'; // السماح بالتمرير في الخلفية
-      }
-
-      // ربط زر الإغلاق لـ Detail Modal
-      detailCloseBtn.onclick = closeDetailModal;
-
-      // إغلاق الـ Modal عند النقر خارجها
-      window.onclick = function(event) {
-        const orderModal = document.getElementById("orderModal");
-        if (event.target == orderModal) {
-          closeOrderModal();
-        }
-        if (event.target == detailModal) {
-          closeDetailModal();
-        }
-      }
-
-      // ربط أزرار "التفاصيل"
-      detailButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-          e.preventDefault();
-          const productId = this.getAttribute('data-product-id');
-          openModal(productId);
-        });
-      });
-
-      // =========================================================================
-      // كود Order Modal
-      const orderModal = document.getElementById("orderModal");
-      const closeOrderBtn = document.getElementById("closeOrderBtn");
-      const orderForm = document.getElementById("orderForm");
-      const productsContainer = document.getElementById("productsContainer");
-      const orderNowButtons = document.querySelectorAll(".order-now-btn");
-
-      // Initialize products in the order modal
-      function initializeOrderModal() {
-        productsContainer.innerHTML = "";
-        Object.keys(productsData).forEach(productId => {
-          const product = productsData[productId];
-          const productCard = document.createElement('div');
-          productCard.className = 'product-order-card';
-          productCard.innerHTML = `
-            <img src="img/${product.image.split('/').pop()}" alt="${product.title}">
-            <h4>${product.title}</h4>
-            <div class="quantity-control">
-              <button type="button" class="qty-decrease" data-product-id="${productId}">-</button>
-              <input type="number" class="qty-input" data-product-id="${productId}" value="0" min="0">
-              <button type="button" class="qty-increase" data-product-id="${productId}">+</button>
-            </div>
-          `;
-          productsContainer.appendChild(productCard);
-        });
-
-        // Attach quantity control listeners
-        attachQuantityListeners();
-      }
-
-      function attachQuantityListeners() {
-        const decreaseButtons = document.querySelectorAll('.qty-decrease');
-        const increaseButtons = document.querySelectorAll('.qty-increase');
-        const qtyInputs = document.querySelectorAll('.qty-input');
-
-        decreaseButtons.forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const productId = btn.getAttribute('data-product-id');
-            const input = document.querySelector(`.qty-input[data-product-id="${productId}"]`);
-            const currentValue = parseInt(input.value) || 0;
-            if (currentValue > 0) {
-              input.value = currentValue - 1;
-            }
-          });
-        });
-
-        increaseButtons.forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const productId = btn.getAttribute('data-product-id');
-            const input = document.querySelector(`.qty-input[data-product-id="${productId}"]`);
-            const currentValue = parseInt(input.value) || 0;
-            input.value = currentValue + 1;
-          });
-        });
-
-        qtyInputs.forEach(input => {
-          input.addEventListener('change', (e) => {
-            let value = parseInt(e.target.value) || 0;
-            if (value < 0) value = 0;
-            e.target.value = value;
-          });
-        });
-      }
-
-      function openOrderModal() {
-        initializeOrderModal();
-        orderModal.style.display = "flex";
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeOrderModal() {
-        orderModal.style.display = "none";
-        document.body.style.overflow = 'auto';
-      }
-
-      // Open order modal when clicking "Order Now" buttons
-      orderNowButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          openOrderModal();
-        });
-      });
-
-      // Close order modal
-      closeOrderBtn.onclick = closeOrderModal;
-
-      // Close modal when clicking outside
-      window.onclick = function(event) {
-        const orderModal = document.getElementById("orderModal");
-        if (event.target == orderModal) {
-          closeOrderModal();
-        }
-        const detailModal = document.getElementById("productDetailModal");
-        if (event.target == detailModal) {
-          closeDetailModal();
-        }
-      }
-
-      // Handle form submission
-      orderForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Collect form data
-        const fullName = document.getElementById('fullName').value.trim();
-        const phoneNumber = document.getElementById('phoneNumber').value.trim();
-        const address = document.getElementById('address').value.trim();
-
-        // Validate inputs
-        if (!fullName || !phoneNumber || !address) {
-          alert('يرجى ملء جميع الحقول المطلوبة');
-          return;
-        }
-
-        // Collect selected products
-        const selectedProducts = [];
-        const qtyInputs = document.querySelectorAll('.qty-input');
-        qtyInputs.forEach(input => {
-          const productId = input.getAttribute('data-product-id');
-          const quantity = parseInt(input.value) || 0;
-          if (quantity > 0) {
-            const product = productsData[productId];
-            selectedProducts.push({
-              title: product.title,
-              quantity: quantity,
-              price: product.price
-            });
-          }
-        });
-
-        // Check if at least one product is selected
-        if (selectedProducts.length === 0) {
-          alert('يرجى اختيار منتج واحد على الأقل');
-          return;
-        }
-
-        // Generate WhatsApp message
-        let message = `*طلب شراء جديد من موقع Lana ProCare*\n\n`;
-        message += `*بيانات العميل:*\n`;
-        message += `الاسم: ${fullName}\n`;
-        message += `رقم الهاتف: ${phoneNumber}\n`;
-        message += `العنوان: ${address}\n\n`;
-        message += `*المنتجات المطلوبة:*\n`;
-        selectedProducts.forEach((item, index) => {
-          message += `${index + 1}. ${item.title}\n   الكمية: ${item.quantity}\n   السعر: ${item.price}\n`;
-        });
-
-        // WhatsApp number (replace with your actual number)
-        const whatsappNumber = '962795982044'; // Jordan number format
-        const whatsappLink = `https://api.whatsapp.com/send/?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
-
-        // Open WhatsApp
-        window.open(whatsappLink, '_blank');
-
-        // Reset form
-        orderForm.reset();
-        closeOrderModal();
-      });
-
-      // =========================================================================
-      // كود الـ Navbar Toggle
-      const menuToggle = document.querySelector('.menu-toggle');
-      const navLinks = document.querySelector('.nav-links');
-
-      menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('show');
-        const icon = menuToggle.querySelector('i');
-        if (navLinks.classList.contains('show')) {
-          icon.classList.remove('fa-bars');
-          icon.classList.add('fa-times');
-        } else {
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
-        }
-      });
-
-      // إغلاق القائمة عند النقر على أي رابط
-      navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          navLinks.classList.remove('show');
-          menuToggle.querySelector('i').classList.remove('fa-times');
-          menuToggle.querySelector('i').classList.add('fa-bars');
-        });
-      });
-
-
-      // =========================================================================
-      // كود الـ Hero Slider
-      const slides = document.querySelectorAll('.slide');
-      const dotsContainer = document.getElementById('dotsContainer');
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-      let currentSlide = 0;
-
-      // إنشاء النقاط
-      slides.forEach((slide, index) => {
-        const dot = document.createElement('span');
-        dot.classList.add('dot');
-        if (index === 0) {
-          dot.classList.add('active');
-        }
-        dot.addEventListener('click', () => {
-          goToSlide(index);
-        });
-        dotsContainer.appendChild(dot);
-      });
-
-      const dots = document.querySelectorAll('.dot');
-
-      function goToSlide(n) {
-        slides[currentSlide].classList.remove('active');
-        dots[currentSlide].classList.remove('active');
-        currentSlide = (n + slides.length) % slides.length;
-        slides[currentSlide].classList.add('active');
-        dots[currentSlide].classList.add('active');
-      }
-
-      function nextSlide() {
-        goToSlide(currentSlide + 1);
-      }
-
-      function prevSlide() {
-        goToSlide(currentSlide - 1);
-      }
-
-      nextBtn.addEventListener('click', nextSlide);
-      prevBtn.addEventListener('click', prevSlide);
-
-      // تشغيل السلايدر تلقائياً
-      let slideInterval = setInterval(nextSlide, 5000);
-
-      // إيقاف التشغيل التلقائي عند التفاعل
-      function stopAutoSlide() {
-        clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, 5000);
-      }
-
-      dotsContainer.addEventListener('click', stopAutoSlide);
-      prevBtn.addEventListener('click', stopAutoSlide);
-      nextBtn.addEventListener('click', stopAutoSlide);
-
-      // =========================================================================
-      // كود الـ Scroll Header
+    document.addEventListener('DOMContentLoaded', () => {
+      /* ==========================
+         Header Scroll Effect
+      =========================== */
       const header = document.querySelector('.galaxy-header');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -2411,32 +1624,384 @@
         }
       });
 
-      // =========================================================================
-      // كود الـ Particles
-      const particlesContainer = document.getElementById('particlesContainer');
+      /* ==========================
+         Mobile Menu Toggle
+      =========================== */
+      const mobileMenuToggle = document.getElementById('menuToggle');
+      const mobileNavLinks = document.querySelector('.nav-links');
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileNavLinks.classList.toggle('active');
+        mobileMenuToggle.querySelector('i').classList.toggle('fa-bars');
+        mobileMenuToggle.querySelector('i').classList.toggle('fa-times');
+      });
 
+      // Close menu when a link is clicked (mobile)
+      mobileNavLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (mobileNavLinks.classList.contains('active')) {
+            mobileNavLinks.classList.remove('active');
+            mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+            mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+          }
+        });
+      });
+
+      /* ==========================
+         Smooth Scroll for Nav Links
+      =========================== */
+      document.querySelectorAll('.nav-link').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      /* ==========================
+         Hero Slider (Fixed)
+      =========================== */
+      const heroSlides = document.querySelectorAll('.galaxy-hero-slider .slide');
+      let heroCurrentSlide = 0;
+      let heroSlideInterval;
+
+      function showHeroSlide(index) {
+          heroSlides.forEach((slide, i) => {
+              slide.classList.remove('active');
+              if (i === index) {
+                  slide.classList.add('active');
+              }
+          });
+      }
+
+      function heroNextSlide() {
+          heroCurrentSlide = (heroCurrentSlide + 1) % heroSlides.length;
+          showHeroSlide(heroCurrentSlide);
+      }
+
+      function startHeroInterval() {
+          heroSlideInterval = setInterval(heroNextSlide, 5000);
+      }
+
+      function resetHeroInterval() {
+          clearInterval(heroSlideInterval);
+          startHeroInterval();
+      }
+
+      // Initialize slider
+      showHeroSlide(heroCurrentSlide);
+      startHeroInterval();
+
+      // Pause on hover
+      const heroSlider = document.querySelector('.galaxy-hero-slider');
+      heroSlider.addEventListener('mouseenter', () => {
+          clearInterval(heroSlideInterval);
+      });
+
+      heroSlider.addEventListener('mouseleave', () => {
+          startHeroInterval();
+      });
+
+      /* ==========================
+         Particle Animation
+      =========================== */
       function createParticle() {
         const particle = document.createElement('div');
         particle.classList.add('particle');
-        particle.style.width = Math.random() * 3 + 1 + 'px';
-        particle.style.height = particle.style.width;
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDuration = Math.random() * 10 + 10 + 's';
-        particle.style.animationDelay = Math.random() * 5 + 's';
-        particlesContainer.appendChild(particle);
-
-        // إزالة الجسيم بعد انتهاء الحركة لتجنب تراكم العناصر
-        setTimeout(() => {
-          particle.remove();
-        }, parseFloat(particle.style.animationDuration) * 1000);
+        const size = Math.random() * 3 + 1;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.top = `${Math.random() * 100}vh`;
+        particle.style.left = `${Math.random() * 100}vw`;
+        particle.style.animationDuration = `${Math.random() * 15 + 10}s`;
+        particle.style.animationDelay = `-${Math.random() * 25}s`;
+        heroSlider.appendChild(particle);
+        setTimeout(() => particle.remove(), 25000);
       }
-
-      // إنشاء الجسيمات بشكل مستمر
+      for (let i = 0; i < 50; i++) createParticle();
       setInterval(createParticle, 500);
 
+      /* ==========================
+         Cart Functionality
+      =========================== */
+      let cart = [];
+      const productsData = {
+        'product1': { title: 'زبدة الجسم بالمانجو', price: 9, image: 'img/bodybutter.png' },
+        'product2': { title: 'زيت الجسم للبشرة الناعمة', price: 7, image: 'img/bodyoil.png' },
+        'product3': { title: 'مقشر الجسم بالقهوة', price: 10, image: 'img/bodyscrub.png' },
+        'product4': { title: 'مزيل عرق لا سواه', price: 6, image: 'img/Deodorants.png' },
+        'product5': { title: 'زيت الأرغان للشعر', price: 12, image: 'img/hairoil.jpg' },
+        'product6': { title: 'سيروم ألفا أربوتين', price: 15, image: 'img/serum.png' }
+      };
+      const cartSidebar = document.getElementById('cartSidebar');
+      const cartOverlay = document.getElementById('cartOverlay');
+      const openCartBtn = document.getElementById('openCartBtn');
+      const closeCartBtn = document.getElementById('closeCartBtn');
+      const cartItemsContainer = document.getElementById('cartItems');
+      const cartSummaryContainer = document.getElementById('cartSummary');
+      const cartCount = document.getElementById('cartCount');
+      const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+
+      /* ==========================
+         Cart Persistence
+      =========================== */
+      function saveCart() {
+          localStorage.setItem('lanaProCareCart', JSON.stringify(cart));
+      }
+
+      function loadCart() {
+          const savedCart = localStorage.getItem('lanaProCareCart');
+          if (savedCart) {
+              cart = JSON.parse(savedCart);
+              updateCartCount();
+          }
+      }
+
+      // Load cart when page loads
+      loadCart();
+
+      function updateCartCount() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount.textContent = totalItems;
+      }
+
+      function renderCart() {
+        cartItemsContainer.innerHTML = '';
+        let subtotal = 0;
+
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = '<p class="empty-cart-message">سلتك فارغة.</p>';
+          cartSummaryContainer.innerHTML = '';
+          return;
+        }
+
+        cart.forEach(item => {
+          const product = productsData[item.id];
+          if (!product) return;
+          const itemTotal = product.price * item.quantity;
+          subtotal += itemTotal;
+
+          const cartItemHTML = `
+            <div class="cart-item" data-product-id="${item.id}">
+              <img src="${product.image}" alt="${product.title}" class="cart-item-image">
+              <div class="cart-item-details">
+                <h4>${product.title}</h4>
+                <p>السعر: ${product.price} JOD</p>
+                <div class="cart-item-quantity">
+                  <button class="qty-decrease" data-id="${item.id}">-</button>
+                  <input type="number" value="${item.quantity}" min="1" class="qty-input" data-id="${item.id}" readonly>
+                  <button class="qty-increase" data-id="${item.id}">+</button>
+                </div>
+              </div>
+              <span class="cart-item-price">${itemTotal.toFixed(2)} JOD</span>
+              <button class="remove-item-btn" data-id="${item.id}"><i class="fas fa-trash"></i></button>
+            </div>
+          `;
+          cartItemsContainer.innerHTML += cartItemHTML;
+        });
+
+        const discountRate = 0.50; // 50%
+        const discount = subtotal * discountRate;
+        const total = subtotal - discount;
+
+        const summaryHTML = `
+          <div><span>المجموع الفرعي:</span><span>${subtotal.toFixed(2)} JOD</span></div>
+          <div><span>خصم 50%:</span><span style="color: #f00;">-${discount.toFixed(2)} JOD</span></div>
+          <div class="total-row"><span>المجموع الكلي:</span><span>${total.toFixed(2)} JOD</span></div>
+          <button class="btn btn-primary" id="completeOrderBtn">إتمام الطلب</button>
+          <div class="checkout-form" id="checkoutForm" style="display:none;">
+            <h3>بيانات التوصيل</h3>
+            <input type="text" id="customerName" placeholder="الاسم الكامل" required>
+            <input type="tel" id="customerPhone" placeholder="رقم الهاتف" required>
+            <input type="text" id="customerAddress" placeholder="العنوان (المدينة، الحي، الشارع)" required>
+            <button class="btn btn-primary" id="submitOrderBtn">إرسال الطلب عبر واتساب</button>
+          </div>
+        `;
+        cartSummaryContainer.innerHTML = summaryHTML;
+
+        attachCartEventListeners();
+      }
+
+      function attachCartEventListeners() {
+        document.querySelectorAll('.qty-increase').forEach(btn => btn.onclick = () => updateQuantity(btn.dataset.id, 1));
+        document.querySelectorAll('.qty-decrease').forEach(btn => btn.onclick = () => updateQuantity(btn.dataset.id, -1));
+        document.querySelectorAll('.remove-item-btn').forEach(btn => btn.onclick = () => removeItem(btn.dataset.id));
+
+        const completeOrderBtn = document.getElementById('completeOrderBtn');
+        const checkoutForm = document.getElementById('checkoutForm');
+        const submitOrderBtn = document.getElementById('submitOrderBtn');
+
+        if (completeOrderBtn) completeOrderBtn.onclick = () => { checkoutForm.style.display = 'block'; completeOrderBtn.style.display = 'none'; };
+        if (submitOrderBtn) submitOrderBtn.onclick = submitOrder;
+      }
+
+      function updateQuantity(productId, change) {
+        const item = cart.find(i => i.id === productId);
+        if (item) {
+          item.quantity += change;
+          if (item.quantity < 1) removeItem(productId);
+          else { saveCart(); renderCart(); updateCartCount(); }
+        }
+      }
+
+      function removeItem(productId) { 
+        cart = cart.filter(item => item.id !== productId); 
+        saveCart(); 
+        updateCartCount(); 
+        renderCart(); 
+      }
+
+      function openCart() { 
+        cartSidebar.classList.add('open'); 
+        cartOverlay.classList.add('open'); 
+        document.body.style.overflow = 'hidden'; 
+        renderCart(); 
+      }
+      
+      function closeCart() { 
+        cartSidebar.classList.remove('open'); 
+        cartOverlay.classList.remove('open'); 
+        document.body.style.overflow = 'auto'; 
+      }
+
+      function addToCart(productId) {
+        const existingProduct = cart.find(item => item.id === productId);
+        if (existingProduct) existingProduct.quantity++;
+        else cart.push({ id: productId, quantity: 1 });
+        saveCart(); updateCartCount(); openCart();
+      }
+
+      function submitOrder() {
+        const name = document.getElementById('customerName').value;
+        const phone = document.getElementById('customerPhone').value;
+        const address = document.getElementById('customerAddress').value;
+        if (!name || !phone || !address) { alert('الرجاء تعبئة جميع حقول بيانات التوصيل.'); return; }
+
+        let orderDetails = 'طلب جديد من موقع Lana ProCare:\n\n';
+        let subtotal = 0;
+        cart.forEach(item => {
+          const product = productsData[item.id];
+          const itemTotal = product.price * item.quantity;
+          subtotal += itemTotal;
+          orderDetails += `* ${product.title} (x${item.quantity}) - ${itemTotal.toFixed(2)} JOD\n`;
+        });
+
+        const discount = subtotal * 0.50;
+        const total = subtotal - discount;
+        orderDetails += `\nالمجموع الفرعي: ${subtotal.toFixed(2)} JOD\nخصم 50%: -${discount.toFixed(2)} JOD\nالمجموع الكلي: ${total.toFixed(2)} JOD\n`;
+        orderDetails += `\nالاسم: ${name}\nالهاتف: ${phone}\nالعنوان: ${address}`;
+
+        const whatsappNumber = '+962795982044';
+        const encodedMessage = encodeURIComponent(orderDetails);
+        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        window.open(whatsappURL, '_blank');
+
+        cart = []; saveCart(); updateCartCount(); closeCart();
+        alert('تم تجهيز طلبك! سيتم نقلك إلى تطبيق واتساب لإرسال الطلب.');
+      }
+
+      openCartBtn.addEventListener('click', openCart);
+      closeCartBtn.addEventListener('click', closeCart);
+      cartOverlay.addEventListener('click', closeCart);
+      addToCartButtons.forEach(btn => btn.addEventListener('click', e => { e.preventDefault(); addToCart(btn.dataset.productId); }));
+
+      updateCartCount();
+
+      /* ==========================
+         Product Modal
+      =========================== */
+      const detailButtons = document.querySelectorAll('.product-detail-btn');
+      const modal = document.getElementById('productModal');
+      const closeBtn = document.querySelector('.close-btn');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalImage = document.getElementById('modalImage');
+      const modalDescription = document.getElementById('modalDescription');
+
+      const productModalData = {
+        product1: {
+          title: "زبدة الجسم بالمانجو",
+          image: "img/bodybutter.png",
+          description: "زبدة الجسم بالمانجو تساعد على ترطيب البشرة بعمق، مما يمنحها نعومة فورية ورائحة منعشة وتعزز راحة البشرة وتضيف لمسة من الانتعاش طوال اليوم"
+        },
+        product2: {
+          title: "زيت الجسم للبشرة الناعمة",
+          image: "img/bodyoil.png",
+          description: "تركيبة غنية من الزيوت الطبيعية والفيتامينات، مصممة خصيصاً لترطيب البشرة بعمق ومنحها ملمساً حريرياً. يمتص بسرعة ولا يترك أي إحساس دهني. مثالي للاستخدام اليومي بعد الاستحمام."
+        },
+        product3: {
+          title: "مقشر الجسم بالقهوة",
+          image: "img/bodyscrub.png",
+          description: "هذا المنتج يقشّر البشرة بلطف ، مما يساعد على إزالة الخلايا الميتة والشوائب وبفضل تركيبته الغنية يترك بشرتك ناعمة، منعشة ومشرقة ، معززًا إشراقتها الطبيعية ليمنحك مظهرًا صحيًا وحيويًا.. كما يساهم في تحسين ملمس البشرة مما يجعلها أكثر نعومة وحيوية مع الاستخدام المنتظم"
+        },
+        product4: {
+          title: "مزيل عرق لا سواه",
+          image: "img/Deodorants.png",
+          description: "مزيل عرق طبيعي وفعال يوفر حماية طويلة الأمد من الرائحة دون سد المسام. تركيبة لطيفة على البشرة الحساسة وخالية من المواد الكيميائية الضارة. يمنح شعوراً بالانتعاش طوال اليوم."
+        },
+        product5: {
+          title: "زيت الأرغان للشعر",
+          image: "img/hairoil.jpg",
+          description: "تركيبة غنية بزيت الأرجان الطبيعي وإكليل الجبل وفيتامين E تعمل على تعزيز قوة الشعر وترطيبه بعمق ، تمنح شعرك لمعانًا فائقًا وتساعد على تحسين صحة الشعر ويضفي عليه نعومة وحيوية"
+        },
+        product6: {
+          title: "سيروم ألفا أربوتين",
+          image: "img/serum.png",
+          description: "سيروم فعال يحتوي على تركيز عالٍ من ألفا أربوتين، المعروف بقدرته على تفتيح البقع الداكنة وتصبغات البشرة. يعزز إشراقة البشرة ويوحد لونها بفعالية وأمان."
+        }
+      };
+
+      detailButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          const productId = e.target.dataset.productId;
+          const product = productModalData[productId];
+
+          if (product) {
+            modalTitle.textContent = product.title;
+            modalImage.src = product.image;
+            modalImage.alt = product.title;
+            modalDescription.textContent = product.description;
+            modal.style.display = "flex";
+          }
+        });
+      });
+
+      closeBtn.addEventListener('click', () => {
+        modal.style.display = "none";
+      });
+
+      window.addEventListener('click', (e) => {
+        if (e.target == modal) {
+          modal.style.display = "none";
+        }
+      });
+
+      /* ==========================
+         Active Nav Link Update
+      =========================== */
+      function updateActiveNavLink() {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (scrollY >= (sectionTop - 100)) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveNavLink);
     });
   </script>
 </body>
-
 </html>
