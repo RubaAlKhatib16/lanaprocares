@@ -1,144 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>المنتجات - Lana Broker</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <!-- Header & Navigation -->
-  <header>
-    <nav class="container">
-      <div class="logo">Lana Broker</div>
-      <ul class="nav-links">
-        <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="about.html">عن البراند</a></li>
-        <li><a href="products.html">المنتجات</a></li>
-        <li><a href="contact.html">تواصل معنا</a></li>
-      </ul>
-      <button class="menu-toggle">☰</button>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero" style="min-height: 50vh;">
-    <div class="hero-content">
-      <h1>جميع المنتجات</h1>
-      <p>اكتشفي مجموعتنا الكاملة من منتجات العناية الفاخرة</p>
-    </div>
-  </section>
-
-  <!-- Filter Section -->
-  <section class="section section-dark">
-    <div class="container">
-      <h2 style="text-align: center; margin-bottom: 2rem;">ترتيب حسب الفئة</h2>
-      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
-        <button class="btn btn-primary" onclick="filterProducts('all')">جميع المنتجات</button>
-        <button class="btn btn-secondary" onclick="filterProducts('سيروم')">سيروم</button>
-        <button class="btn btn-secondary" onclick="filterProducts('زبدة')">زبدة</button>
-        <button class="btn btn-secondary" onclick="filterProducts('مقشر')">مقشر</button>
-        <button class="btn btn-secondary" onclick="filterProducts('زيت')">زيت</button>
-        <button class="btn btn-secondary" onclick="filterProducts('ماسك')">ماسك</button>
-        <button class="btn btn-secondary" onclick="filterProducts('عناية الشعر')">عناية الشعر</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Products Grid -->
-  <section class="section">
-    <div class="container">
-      <div id="products-grid" class="products-grid"></div>
-    </div>
-  </section>
-
-  <!-- Why Our Products Section -->
-  <section class="section section-dark">
-    <div class="container">
-      <h2 style="text-align: center;">مميزات منتجاتنا</h2>
-      <div class="products-grid" style="margin-top: 3rem;">
-        <div class="product-card">
-          <div class="product-image" style="font-size: 3rem;">🌿</div>
-          <h3>100% طبيعي</h3>
-          <p>جميع المكونات طبيعية ونقية بدون أي إضافات كيميائية ضارة</p>
-        </div>
-        <div class="product-card">
-          <div class="product-image" style="font-size: 3rem;">✨</div>
-          <h3>ذهب خالص</h3>
-          <p>نستخدم ذهب 24 قيراط لإضافة لمسة من الفخامة والإشراقة</p>
-        </div>
-        <div class="product-card">
-          <div class="product-image" style="font-size: 3rem;">🧪</div>
-          <h3>مختبر ومختبر</h3>
-          <p>جميع المنتجات تمر بفحوصات صارمة وآمنة للاستخدام</p>
-        </div>
-        <div class="product-card">
-          <div class="product-image" style="font-size: 3rem;">🌍</div>
-          <h3>صديقة للبيئة</h3>
-          <p>عبوات قابلة لإعادة التدوير والاستخدام</p>
-        </div>
-        <div class="product-card">
-          <div class="product-image" style="font-size: 3rem;">💎</div>
-          <h3>فعالة وسريعة</h3>
-          <p>نتائج ملحوظة في فترة زمنية قصيرة</p>
-        </div>
-        <div class="product-card">
-          <div class="product-image" style="font-size: 3rem;">👑</div>
-          <h3>للجميع</h3>
-          <p>مناسبة لجميع أنواع البشرة والشعر</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Call to Action -->
-  <section class="section">
-    <div class="container" style="text-align: center;">
-      <h2>اختاري المنتج المناسب لك</h2>
-      <p style="font-size: 1.2rem; margin: 1.5rem 0; color: #e0e0e0;">
-        هل تحتاجين إلى استشارة؟ فريقنا مستعد لمساعدتك
-      </p>
-      <a href="tel:+966501234567" class="btn btn-primary">اطلبي الآن</a>
-      <a href="contact.html" class="btn btn-secondary" style="margin-right: 1rem;">تواصلي معنا</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h4>عن Lana Broker</h4>
-          <p>نقدم أفضل منتجات العناية بالبشرة والشعر المصنوعة من مكونات طبيعية فاخرة.</p>
-          <div class="social-links">
-            <a href="https://instagram.com" target="_blank">📷</a>
-            <a href="https://facebook.com" target="_blank">f</a>
-            <a href="https://twitter.com" target="_blank">𝕏</a>
-            <a href="https://tiktok.com" target="_blank">♪</a>
-          </div>
-        </div>
-        <div class="footer-section">
-          <h4>روابط سريعة</h4>
-          <a href="index.html">الرئيسية</a>
-          <a href="about.html">عن البراند</a>
-          <a href="products.html">المنتجات</a>
-          <a href="contact.html">تواصل معنا</a>
-        </div>
-        <div class="footer-section">
-          <h4>تواصلي معنا</h4>
-          <p>📞 <a href="tel:+966501234567">+966 50 123 4567</a></p>
-          <p>📧 <a href="mailto:info@lanabroker.com">info@lanabroker.com</a></p>
-          <p>📍 الرياض، المملكة العربية السعودية</p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Lana Broker. جميع الحقوق محفوظة.</p>
-        <p>منتجات العناية الفاخرة بالبشرة والشعر</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/script.js"></script>
-</body>
-</html>
-
