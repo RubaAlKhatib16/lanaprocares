@@ -1,114 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تفاصيل المنتج - Lana Broker</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <!-- Header & Navigation -->
-  <header>
-    <nav class="container">
-      <div class="logo">Lana Broker</div>
-      <ul class="nav-links">
-        <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="about.html">عن البراند</a></li>
-        <li><a href="products.html">المنتجات</a></li>
-        <li><a href="contact.html">تواصل معنا</a></li>
-      </ul>
-      <button class="menu-toggle">☰</button>
-    </nav>
-  </header>
-
-  <!-- Product Detail Section -->
-  <section class="section section-dark">
-    <div class="container">
-      <div id="product-detail-container"></div>
-    </div>
-  </section>
-
-  <!-- Related Products Section -->
-  <section class="section">
-    <div class="container">
-      <h2 style="text-align: center; margin-bottom: 2rem;">منتجات ذات صلة</h2>
-      <div id="related-products" class="products-grid"></div>
-    </div>
-  </section>
-
-  <!-- Call to Action -->
-  <section class="section section-dark">
-    <div class="container" style="text-align: center;">
-      <h2>هل أعجبك هذا المنتج؟</h2>
-      <p style="font-size: 1.2rem; margin: 1.5rem 0; color: #e0e0e0;">
-        اطلبيه الآن واستمتعي بالفخامة والجودة
-      </p>
-      <a href="tel:+966501234567" class="btn btn-primary">اطلبي عبر الهاتف</a>
-      <a href="products.html" class="btn btn-secondary" style="margin-right: 1rem;">العودة للمنتجات</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h4>عن Lana Broker</h4>
-          <p>نقدم أفضل منتجات العناية بالبشرة والشعر المصنوعة من مكونات طبيعية فاخرة.</p>
-          <div class="social-links">
-            <a href="https://instagram.com" target="_blank">📷</a>
-            <a href="https://facebook.com" target="_blank">f</a>
-            <a href="https://twitter.com" target="_blank">𝕏</a>
-            <a href="https://tiktok.com" target="_blank">♪</a>
-          </div>
-        </div>
-        <div class="footer-section">
-          <h4>روابط سريعة</h4>
-          <a href="index.html">الرئيسية</a>
-          <a href="about.html">عن البراند</a>
-          <a href="products.html">المنتجات</a>
-          <a href="contact.html">تواصل معنا</a>
-        </div>
-        <div class="footer-section">
-          <h4>تواصلي معنا</h4>
-          <p>📞 <a href="tel:+966501234567">+966 50 123 4567</a></p>
-          <p>📧 <a href="mailto:info@lanabroker.com">info@lanabroker.com</a></p>
-          <p>📍 الرياض، المملكة العربية السعودية</p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Lana Broker. جميع الحقوق محفوظة.</p>
-        <p>منتجات العناية الفاخرة بالبشرة والشعر</p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Render related products
-    document.addEventListener('DOMContentLoaded', () => {
-      renderProductDetail();
-      
-      // Render related products (excluding current product)
-      const urlParams = new URLSearchParams(window.location.search);
-      const productId = parseInt(urlParams.get('id'));
-      const relatedProducts = productsData.filter(p => p.id !== productId).slice(0, 3);
-      
-      const relatedContainer = document.getElementById('related-products');
-      if (relatedContainer) {
-        relatedContainer.innerHTML = relatedProducts.map(product => `
-          <div class="product-card">
-            <div class="product-image">${product.image}</div>
-            <h3>${product.name}</h3>
-            <p>${product.description}</p>
-            <p class="product-price">${product.price}</p>
-            <a href="product-detail.html?id=${product.id}" class="btn btn-primary">عرض التفاصيل</a>
-            <a href="tel:+966501234567" class="btn btn-secondary" style="margin-top: 0.5rem;">اطلب عبر الهاتف</a>
-          </div>
-        `).join('');
-      }
-    });
-  </script>
-  <script src="js/script.js"></script>
-</body>
-</html>
-
